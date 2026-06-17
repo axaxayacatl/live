@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CONTUMACY</title>
+
+<style>
+body {
+  margin:0;
+  height:100vh;
+  background:#080808;
+  color:#ddd;
+  font-family:monospace;
+  overflow:hidden;
+}
+
+.left-abyss,
+.right-abyss {
+  position:absolute;
+  top:0;
+  height:100%;
+  width:25%;
+  background:
+    linear-gradient(
+      180deg,
+      #111,
+      #050505
+    );
+  box-shadow: inset 0 0 80px #000;
+}
+
+.left-abyss {
+  left:0;
+  border-right:1px solid #333;
+}
+
+.right-abyss {
+  right:0;
+  border-left:1px solid #333;
+}
+.floor {
+  position:absolute;
+  bottom:-20%;
+  left:10%;
+  width:80%;
+  height:50%;
+  transform:perspective(700px) rotateX(60deg);
+
+  background:
+  repeating-conic-gradient(
+    #0a0a0a 0 25%,
+    #d5d5d5 0 50%
+  ) 0 / 100px 100px;
+
+  opacity:.25;
+}
+.signal {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+}
+
+h1 {
+  font-size:90px;
+  letter-spacing:.35em;
+  margin:0;
+
+  color:#eee;
+
+  text-shadow:
+  0 0 20px #fff,
+  0 0 60px #777;
+}
+
+p {
+  letter-spacing:.5em;
+  color:#888;
+}
+
+.note {
+  margin-top:50px;
+  color:#aaa;
+  animation:pulse 5s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity:.2;
+  }
+}
+
+/* invisible surveillance layer */
+.grid {
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(
+    rgba(255,255,255,.03) 1px,
+    transparent 1px
+  ),
+  linear-gradient(
+    90deg,
+    rgba(255,255,255,.03) 1px,
+    transparent 1px
+  );
+  background-size:50px 50px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="left-abyss"></div>
+<div class="right-abyss"></div>
+
+<div class="floor"></div>
+
+<div class="signal">
+<h1>CONTUMACY</h1>
+
+<p>
+BETWEEN SCYLLA // CHARYBDIS
+</p>
+
+<div class="note">
+UNPLUGGED GUITAR AMBIENT PERFORMANCE<br>
+A DIGITAL INSTALLATION
+</div>
+
+</div>
+
+<div class="grid"></div>
+
+</body>
+</html>
