@@ -1,1033 +1,1292 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NECROVOLTIS // LAB DAY 001</title>
-    <meta name="description" content="NECROVOLTIS LAB DAY 001. First public laboratory session. September 17, 2026 at 9PM EST.">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap');
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      :root {
-        --espresso: #211914;
-        --deep: #17120f;
-        --coffee: #4a3529;
-        --latte: #8b705c;
-        --cream: #eee5d5;
-        --milk: #f7f1e7;
-        --paper: #e4d9c8;
-        --ink: #18130f;
-        --muted: #76685b;
-        --line: rgba(33, 25, 20, .18);
-      }
+<title>NECROVOLTIS // LAB DAY 001</title>
 
-      * {
-        box-sizing: border-box;
-      }
+<meta name="description" content="NECROVOLTIS LAB DAY 001. First public laboratory session. September 17, 2026 at 21:00 EDT.">
 
-      html {
-        scroll-behavior: smooth;
-      }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap');
 
-      body {
-        margin: 0;
-        background:
-          radial-gradient(circle at 80% 10%, rgba(139, 112, 92, .16), transparent 28%),
-          radial-gradient(circle at 10% 80%, rgba(139, 112, 92, .10), transparent 30%),
-          var(--cream);
-        color: var(--ink);
-        font-family: "IBM Plex Mono", monospace;
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
+:root {
+    --espresso: #211914;
+    --deep: #17120f;
+    --coffee: #4a3529;
+    --latte: #8b705c;
+    --cream: #eee5d5;
+    --milk: #f7f1e7;
+    --paper: #e4d9c8;
+    --ink: #18130f;
+    --muted: #76685b;
+    --line: rgba(33,25,20,.18);
+}
 
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 9999;
-        opacity: .16;
-        background:
-          repeating-linear-gradient(to bottom,
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at 80% 10%, rgba(139,112,92,.16), transparent 28%),
+        radial-gradient(circle at 10% 80%, rgba(139,112,92,.10), transparent 30%),
+        var(--cream);
+    color: var(--ink);
+    font-family: "IBM Plex Mono", monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: .16;
+    background:
+        repeating-linear-gradient(
+            to bottom,
             transparent 0px,
             transparent 3px,
-            rgba(33, 25, 20, .10) 4px);
-      }
+            rgba(33,25,20,.10) 4px
+        );
+}
 
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 9998;
-        opacity: .08;
-        background-image:
-          radial-gradient(rgba(33, 25, 20, .8) .5px, transparent .5px);
-        background-size: 5px 5px;
-      }
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: .08;
+    background-image:
+        radial-gradient(rgba(33,25,20,.8) .5px, transparent .5px);
+    background-size: 5px 5px;
+}
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-      button {
-        font: inherit;
-      }
+.topbar {
+    background: var(--espresso);
+    color: var(--milk);
+    min-height: 32px;
+    padding: 7px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
 
-      .topbar {
-        background: var(--espresso);
-        color: var(--milk);
-        min-height: 32px;
-        padding: 7px 18px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-        font-size: 9px;
-        letter-spacing: .16em;
-        text-transform: uppercase;
-      }
+.topbar-left,
+.topbar-right {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
 
-      .topbar-left,
-      .topbar-right {
-        display: flex;
-        gap: 22px;
-        align-items: center;
-      }
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--milk);
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 7px;
+}
 
-      .status-dot {
-        width: 6px;
-        height: 6px;
-        background: var(--milk);
-        display: inline-block;
-        border-radius: 50%;
-        margin-right: 7px;
-      }
+header {
+    border-bottom: 1px solid var(--line);
+}
 
-      header {
-        border-bottom: 1px solid var(--line);
-      }
+.brand-row {
+    max-width: 1500px;
+    margin: auto;
+    padding: 28px 28px 22px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 30px;
+}
 
-      .brand-row {
-        max-width: 1500px;
-        margin: auto;
-        padding: 28px 28px 22px;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: end;
-        gap: 30px;
-      }
+.brand {
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(26px, 5vw, 64px);
+    letter-spacing: -.06em;
+    line-height: .9;
+}
 
-      .brand {
-        font-family: "Silkscreen", monospace;
-        font-size: clamp(26px, 5vw, 64px);
-        letter-spacing: -.06em;
-        line-height: .9;
-      }
+.brand-sub {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
 
-      .brand-sub {
-        margin-top: 12px;
-        color: var(--muted);
-        font-size: 10px;
-        letter-spacing: .2em;
-        text-transform: uppercase;
-      }
+.edition {
+    text-align: right;
+    font-size: 9px;
+    line-height: 1.8;
+    color: var(--muted);
+}
 
-      .edition {
-        text-align: right;
-        font-size: 9px;
-        line-height: 1.8;
-        color: var(--muted);
-      }
+.edition strong {
+    color: var(--ink);
+    font-weight: 600;
+}
 
-      .edition strong {
-        color: var(--ink);
-        font-weight: 600;
-      }
+main {
+    max-width: 1500px;
+    margin: auto;
+    padding: 0 28px 100px;
+}
 
-      main {
-        max-width: 1500px;
-        margin: auto;
-        padding: 0 28px 100px;
-      }
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+    min-height: 540px;
+    border-bottom: 1px solid var(--line);
+}
 
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
-        min-height: 540px;
-        border-bottom: 1px solid var(--line);
-      }
+.hero-copy {
+    padding: 65px 50px 65px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-      .hero-copy {
-        padding: 65px 50px 65px 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+.kicker {
+    font-size: 9px;
+    letter-spacing: .2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
 
-      .kicker {
-        font-size: 9px;
-        letter-spacing: .2em;
-        color: var(--muted);
-        text-transform: uppercase;
-        margin-bottom: 18px;
-      }
+h1 {
+    margin: 0;
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(46px, 9vw, 125px);
+    line-height: .82;
+    letter-spacing: -.08em;
+    font-weight: 400;
+}
 
-      h1 {
-        margin: 0;
-        font-family: "Silkscreen", monospace;
-        font-size: clamp(46px, 9vw, 125px);
-        line-height: .82;
-        letter-spacing: -.08em;
-        font-weight: 400;
-      }
+.hero-description {
+    max-width: 670px;
+    margin-top: 34px;
+    font-size: 13px;
+    line-height: 1.8;
+}
 
-      .hero-description {
-        max-width: 670px;
-        margin-top: 34px;
-        font-size: 13px;
-        line-height: 1.8;
-      }
+.hero-description strong {
+    font-weight: 600;
+}
 
-      .hero-description strong {
-        font-weight: 600;
-      }
+.data-grid {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
 
-      .data-grid {
-        margin-top: 45px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-      }
+.data-cell {
+    padding: 15px;
+    border-right: 1px solid var(--line);
+}
 
-      .data-cell {
-        padding: 15px;
-        border-right: 1px solid var(--line);
-      }
+.data-cell:last-child {
+    border-right: 0;
+}
 
-      .data-cell:last-child {
-        border-right: 0;
-      }
+.data-label {
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: .16em;
+    margin-bottom: 8px;
+}
 
-      .data-label {
-        font-size: 8px;
-        color: var(--muted);
-        letter-spacing: .16em;
-        margin-bottom: 8px;
-      }
+.data-value {
+    font-size: 12px;
+    font-weight: 600;
+}
 
-      .data-value {
-        font-size: 12px;
-        font-weight: 600;
-      }
+.core-panel {
+    background: var(--espresso);
+    color: var(--milk);
+    position: relative;
+    overflow: hidden;
+    min-height: 540px;
+}
 
-      .core-panel {
-        background: var(--espresso);
-        color: var(--milk);
-        position: relative;
-        overflow: hidden;
-        min-height: 540px;
-      }
+.core-panel::before {
+    content: "";
+    position: absolute;
+    inset: 30px;
+    border: 1px solid rgba(247,241,231,.17);
+}
 
-      .core-panel::before {
-        content: "";
-        position: absolute;
-        inset: 30px;
-        border: 1px solid rgba(247, 241, 231, .17);
-      }
+.core-panel::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(247,241,231,.1);
+}
 
-      .core-panel::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        background: rgba(247, 241, 231, .1);
-      }
+.core-label {
+    position: absolute;
+    top: 48px;
+    left: 50px;
+    font-size: 8px;
+    letter-spacing: .2em;
+    color: rgba(247,241,231,.55);
+}
 
-      .core-label {
-        position: absolute;
-        top: 48px;
-        left: 50px;
-        font-size: 8px;
-        letter-spacing: .2em;
-        color: rgba(247, 241, 231, .55);
-      }
+.core-code {
+    position: absolute;
+    right: 50px;
+    top: 48px;
+    font-size: 8px;
+    letter-spacing: .15em;
+    color: rgba(247,241,231,.55);
+}
 
-      .core-code {
-        position: absolute;
-        right: 50px;
-        top: 48px;
-        font-size: 8px;
-        letter-spacing: .15em;
-        color: rgba(247, 241, 231, .55);
-      }
+.core {
+    position: absolute;
+    width: min(72%, 390px);
+    aspect-ratio: 1;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(247,241,231,.25);
+}
 
-      .core {
-        position: absolute;
-        width: min(72%, 390px);
-        aspect-ratio: 1;
-        left: 50%;
-        top: 52%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        border: 1px solid rgba(247, 241, 231, .25);
-      }
+.core::before,
+.core::after {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border-radius: 50%;
+    border: 1px solid rgba(247,241,231,.18);
+}
 
-      .core::before,
-      .core::after {
-        content: "";
-        position: absolute;
-        inset: 12%;
-        border-radius: 50%;
-        border: 1px solid rgba(247, 241, 231, .18);
-      }
+.core::after {
+    inset: 27%;
+    border-color: rgba(247,241,231,.32);
+}
 
-      .core::after {
-        inset: 27%;
-        border-color: rgba(247, 241, 231, .32);
-      }
+.ring {
+    position: absolute;
+    inset: 40%;
+    border-radius: 50%;
+    border: 1px solid rgba(247,241,231,.65);
+}
 
-      .ring {
-        position: absolute;
-        inset: 40%;
-        border-radius: 50%;
-        border: 1px solid rgba(247, 241, 231, .65);
-      }
+.ring::before {
+    content: "";
+    position: absolute;
+    width: 180%;
+    height: 1px;
+    left: -40%;
+    top: 50%;
+    background: rgba(247,241,231,.28);
+}
 
-      .ring::before {
-        content: "";
-        position: absolute;
-        width: 180%;
-        height: 1px;
-        left: -40%;
-        top: 50%;
-        background: rgba(247, 241, 231, .28);
-      }
+.ring::after {
+    content: "";
+    position: absolute;
+    height: 180%;
+    width: 1px;
+    left: 50%;
+    top: -40%;
+    background: rgba(247,241,231,.28);
+}
 
-      .ring::after {
-        content: "";
-        position: absolute;
-        height: 180%;
-        width: 1px;
-        left: 50%;
-        top: -40%;
-        background: rgba(247, 241, 231, .28);
-      }
+.core-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(25px, 5vw, 58px);
+    letter-spacing: -.08em;
+}
 
-      .core-text {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Silkscreen", monospace;
-        font-size: clamp(25px, 5vw, 58px);
-        letter-spacing: -.08em;
-      }
+.core-orbit {
+    position: absolute;
+    width: 120%;
+    height: 45%;
+    left: -10%;
+    top: 27%;
+    border: 1px solid rgba(247,241,231,.15);
+    border-radius: 50%;
+    transform: rotate(-22deg);
+}
 
-      .core-orbit {
-        position: absolute;
-        width: 120%;
-        height: 45%;
-        left: -10%;
-        top: 27%;
-        border: 1px solid rgba(247, 241, 231, .15);
-        border-radius: 50%;
-        transform: rotate(-22deg);
-      }
+.core-info {
+    position: absolute;
+    bottom: 48px;
+    left: 50px;
+    right: 50px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    letter-spacing: .14em;
+    color: rgba(247,241,231,.55);
+}
 
-      .core-info {
-        position: absolute;
-        bottom: 48px;
-        left: 50px;
-        right: 50px;
-        display: flex;
-        justify-content: space-between;
-        font-size: 8px;
-        letter-spacing: .14em;
-        color: rgba(247, 241, 231, .55);
-      }
+section {
+    border-bottom: 1px solid var(--line);
+}
 
-      section {
-        border-bottom: 1px solid var(--line);
-      }
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 20px 0;
+    gap: 20px;
+}
 
-      .section-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        padding: 20px 0;
-        gap: 20px;
-      }
+.section-title {
+    font-family: "Silkscreen", monospace;
+    font-size: 14px;
+    letter-spacing: -.04em;
+}
 
-      .section-title {
-        font-family: "Silkscreen", monospace;
-        font-size: 14px;
-        letter-spacing: -.04em;
-      }
+.section-index {
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: .16em;
+}
 
-      .section-index {
-        font-size: 8px;
-        color: var(--muted);
-        letter-spacing: .16em;
-      }
+/* LIVE FEED */
 
-      /* LIVE FEED */
-      .live-section {
-        padding-bottom: 40px;
-      }
+.live-section {
+    padding-bottom: 40px;
+}
 
-      .live-feed {
-        background: var(--espresso);
-        padding: 18px;
-        color: var(--milk);
-      }
+.live-feed {
+    background: var(--espresso);
+    padding: 18px;
+    color: var(--milk);
+}
 
-      .feed-window {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        background:
-          radial-gradient(circle at center, rgba(139, 112, 92, .08), transparent 35%),
-          #17120f;
-        overflow: hidden;
-        border: 1px solid rgba(247, 241, 231, .13);
-      }
+.feed-window {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background:
+        radial-gradient(circle at center, rgba(139,112,92,.08), transparent 35%),
+        #17120f;
+    overflow: hidden;
+    border: 1px solid rgba(247,241,231,.13);
+}
 
-      .feed-window::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 5;
-        background:
-          repeating-linear-gradient(to bottom,
+.feed-window::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    background:
+        repeating-linear-gradient(
+            to bottom,
             transparent 0,
             transparent 3px,
-            rgba(247, 241, 231, .035) 4px);
-      }
+            rgba(247,241,231,.035) 4px
+        );
+}
 
-      .feed-window iframe {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
+.feed-window iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: none;
+    z-index: 2;
+}
+
+.feed-window.live iframe {
+    display: block;
+}
+
+.feed-window.live .coming-soon {
+    display: none;
+}
+
+.feed-corner {
+    position: absolute;
+    z-index: 10;
+    font-size: 8px;
+    letter-spacing: .15em;
+    color: rgba(247,241,231,.5);
+    pointer-events: none;
+}
+
+.feed-corner.tl {
+    top: 16px;
+    left: 18px;
+}
+
+.feed-corner.tr {
+    top: 16px;
+    right: 18px;
+}
+
+.feed-corner.bl {
+    bottom: 16px;
+    left: 18px;
+}
+
+.feed-corner.br {
+    bottom: 16px;
+    right: 18px;
+}
+
+.coming-soon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 3;
+}
+
+.coming-soon-main {
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(20px, 4vw, 50px);
+    letter-spacing: -.06em;
+}
+
+.coming-soon-sub {
+    margin-top: 14px;
+    font-size: 8px;
+    color: rgba(247,241,231,.48);
+    letter-spacing: .18em;
+}
+
+.feed-crosshair {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: .12;
+}
+
+.feed-crosshair::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    background: var(--milk);
+}
+
+.feed-crosshair::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 50%;
+    background: var(--milk);
+}
+
+.feed-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 3px 2px;
+    font-size: 8px;
+    letter-spacing: .14em;
+    color: rgba(247,241,231,.58);
+}
+
+.feed-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.feed-status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(247,241,231,.5);
+}
+
+.feed-window.live + .feed-bar .feed-status-dot {
+    background: var(--milk);
+}
+
+/* LAB GRID */
+
+.lab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.lab-card {
+    min-height: 250px;
+    padding: 30px;
+    border-right: 1px solid var(--line);
+}
+
+.lab-card:last-child {
+    border-right: 0;
+}
+
+.card-number {
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: .16em;
+}
+
+.card-title {
+    font-family: "Silkscreen", monospace;
+    font-size: 18px;
+    margin-top: 42px;
+}
+
+.card-text {
+    font-size: 11px;
+    line-height: 1.8;
+    color: #4d4137;
+    margin-top: 18px;
+}
+
+/* PROTOCOL */
+
+.protocol-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.protocol {
+    padding: 30px;
+    border-right: 1px solid var(--line);
+    min-height: 210px;
+}
+
+.protocol:last-child {
+    border-right: 0;
+}
+
+.protocol-number {
+    font-family: "Silkscreen", monospace;
+    font-size: 23px;
+}
+
+.protocol-title {
+    margin-top: 35px;
+    font-size: 10px;
+    letter-spacing: .15em;
+    font-weight: 600;
+}
+
+.protocol-text {
+    margin-top: 12px;
+    font-size: 10px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+/* COUNTDOWN */
+
+.countdown-section {
+    padding-bottom: 50px;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.time-unit {
+    padding: 30px;
+    border-right: 1px solid var(--line);
+}
+
+.time-unit:last-child {
+    border-right: 0;
+}
+
+.time-number {
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(30px, 6vw, 70px);
+    line-height: 1;
+}
+
+.time-label {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: .18em;
+}
+
+.activation-note {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 9px;
+    color: var(--muted);
+}
+
+footer {
+    max-width: 1500px;
+    margin: auto;
+    padding: 25px 28px 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 8px;
+    letter-spacing: .12em;
+    color: var(--muted);
+}
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+    .topbar {
+        font-size: 7px;
+    }
+
+    .topbar-right {
         display: none;
-        z-index: 2;
-      }
+    }
 
-      .feed-window.live iframe {
-        display: block;
-      }
+    .brand-row {
+        grid-template-columns: 1fr;
+    }
 
-      .feed-window.live .coming-soon {
-        display: none;
-      }
+    .edition {
+        text-align: left;
+    }
 
-      .feed-corner {
-        position: absolute;
-        z-index: 10;
-        font-size: 8px;
-        letter-spacing: .15em;
-        color: rgba(247, 241, 231, .5);
-        pointer-events: none;
-      }
+    main {
+        padding: 0 16px 70px;
+    }
 
-      .feed-corner.tl {
-        top: 16px;
-        left: 18px;
-      }
+    .hero {
+        grid-template-columns: 1fr;
+    }
 
-      .feed-corner.tr {
-        top: 16px;
-        right: 18px;
-      }
+    .hero-copy {
+        padding: 45px 0;
+    }
 
-      .feed-corner.bl {
-        bottom: 16px;
-        left: 18px;
-      }
+    .core-panel {
+        min-height: 440px;
+    }
 
-      .feed-corner.br {
-        bottom: 16px;
-        right: 18px;
-      }
+    .data-grid {
+        grid-template-columns: 1fr;
+    }
 
-      .coming-soon {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        z-index: 3;
-      }
-
-      .coming-soon-main {
-        font-family: "Silkscreen", monospace;
-        font-size: clamp(20px, 4vw, 50px);
-        letter-spacing: -.06em;
-      }
-
-      .coming-soon-sub {
-        margin-top: 14px;
-        font-size: 8px;
-        color: rgba(247, 241, 231, .48);
-        letter-spacing: .18em;
-      }
-
-      .feed-crosshair {
-        position: absolute;
-        width: 90px;
-        height: 90px;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        opacity: .12;
-      }
-
-      .feed-crosshair::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 1px;
-        top: 50%;
-        background: var(--milk);
-      }
-
-      .feed-crosshair::after {
-        content: "";
-        position: absolute;
-        height: 100%;
-        width: 1px;
-        left: 50%;
-        background: var(--milk);
-      }
-
-      .feed-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-        padding: 14px 3px 2px;
-        font-size: 8px;
-        letter-spacing: .14em;
-        color: rgba(247, 241, 231, .58);
-      }
-
-      .feed-status {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .feed-status-dot {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: rgba(247, 241, 231, .5);
-      }
-
-      .feed-window.live .feed-status-dot {
-        background: #eee5d5;
-      }
-
-      .feed-window.live+.feed-bar .feed-status-dot {
-        background: #eee5d5;
-      }
-
-      /* LAB GRID */
-      .lab-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .lab-card {
-        min-height: 250px;
-        padding: 30px;
-        border-right: 1px solid var(--line);
-      }
-
-      .lab-card:last-child {
+    .data-cell {
         border-right: 0;
-      }
-
-      .card-number {
-        font-size: 8px;
-        color: var(--muted);
-        letter-spacing: .16em;
-      }
-
-      .card-title {
-        font-family: "Silkscreen", monospace;
-        font-size: 18px;
-        margin-top: 42px;
-      }
-
-      .card-text {
-        font-size: 11px;
-        line-height: 1.8;
-        color: #4d4137;
-        margin-top: 18px;
-      }
-
-      /* PROTOCOL */
-      .protocol-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .protocol {
-        padding: 30px;
-        border-right: 1px solid var(--line);
-        min-height: 210px;
-      }
-
-      .protocol:last-child {
-        border-right: 0;
-      }
-
-      .protocol-number {
-        font-family: "Silkscreen", monospace;
-        font-size: 23px;
-      }
-
-      .protocol-title {
-        margin-top: 35px;
-        font-size: 10px;
-        letter-spacing: .15em;
-        font-weight: 600;
-      }
-
-      .protocol-text {
-        margin-top: 12px;
-        font-size: 10px;
-        line-height: 1.7;
-        color: var(--muted);
-      }
-
-      /* COUNTDOWN */
-      .countdown-section {
-        padding-bottom: 50px;
-      }
-
-      .countdown {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        border-top: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
-      }
+    }
 
-      .time-unit {
-        padding: 30px;
-        border-right: 1px solid var(--line);
-      }
+    .data-cell:last-child {
+        border-bottom: 0;
+    }
 
-      .time-unit:last-child {
+    .lab-grid,
+    .protocol-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-card,
+    .protocol {
         border-right: 0;
-      }
+        border-bottom: 1px solid var(--line);
+    }
 
-      .time-number {
-        font-family: "Silkscreen", monospace;
-        font-size: clamp(30px, 6vw, 70px);
-        line-height: 1;
-      }
+    .lab-card:last-child,
+    .protocol:last-child {
+        border-bottom: 0;
+    }
 
-      .time-label {
-        margin-top: 10px;
-        color: var(--muted);
-        font-size: 8px;
-        letter-spacing: .18em;
-      }
+    .countdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-      .activation-note {
-        margin-top: 22px;
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        font-size: 9px;
-        color: var(--muted);
-      }
+    .time-unit:nth-child(2) {
+        border-right: 0;
+    }
 
-      footer {
-        max-width: 1500px;
-        margin: auto;
-        padding: 25px 28px 50px;
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        font-size: 8px;
-        letter-spacing: .12em;
-        color: var(--muted);
-      }
+    .time-unit:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+    }
 
-      /* MOBILE */
-      @media (max-width: 850px) {
-        .topbar {
-          font-size: 7px;
-        }
+    .activation-note {
+        flex-direction: column;
+    }
 
-        .topbar-right {
-          display: none;
-        }
+    footer {
+        padding-left: 16px;
+        padding-right: 16px;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
 
-        .brand-row {
-          grid-template-columns: 1fr;
-        }
+<body>
 
-        .edition {
-          text-align: left;
-        }
-
-        main {
-          padding: 0 16px 70px;
-        }
-
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-copy {
-          padding: 45px 0;
-        }
-
-        .core-panel {
-          min-height: 440px;
-        }
-
-        .data-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .data-cell {
-          border-right: 0;
-          border-bottom: 1px solid var(--line);
-        }
-
-        .data-cell:last-child {
-          border-bottom: 0;
-        }
-
-        .lab-grid,
-        .protocol-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .lab-card,
-        .protocol {
-          border-right: 0;
-          border-bottom: 1px solid var(--line);
-        }
-
-        .lab-card:last-child,
-        .protocol:last-child {
-          border-bottom: 0;
-        }
-
-        .countdown {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .time-unit:nth-child(2) {
-          border-right: 0;
-        }
-
-        .time-unit:nth-child(-n+2) {
-          border-bottom: 1px solid var(--line);
-        }
-
-        .activation-note {
-          flex-direction: column;
-        }
-
-        footer {
-          padding-left: 16px;
-          padding-right: 16px;
-          flex-direction: column;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="topbar">
-      <div class="topbar-left">
-        <span>
-          <span class="status-dot"></span>SYSTEM ONLINE </span>
+<div class="topbar">
+    <div class="topbar-left">
+        <span><span class="status-dot"></span>SYSTEM ONLINE</span>
         <span>NECROVOLTIS</span>
-      </div>
-      <div class="topbar-right">
+    </div>
+
+    <div class="topbar-right">
         <span>LABORATORY / PUBLIC SESSION</span>
         <span>001</span>
-      </div>
     </div>
-    <header>
-      <div class="brand-row">
+</div>
+
+<header>
+    <div class="brand-row">
+
         <div>
-          <div class="brand">NECROVOLTIS</div>
-          <div class="brand-sub">porous archive / experimental laboratory</div>
+            <div class="brand">NECROVOLTIS</div>
+            <div class="brand-sub">porous archive / experimental laboratory</div>
         </div>
+
         <div class="edition">
-          <div>SESSION <strong>001</strong>
-          </div>
-          <div>STATUS <strong>PRE ACTIVATION</strong>
-          </div>
-          <div>ZONE <strong>EST</strong>
-          </div>
+            <div>SESSION <strong>001</strong></div>
+            <div>STATUS <strong>PRE ACTIVATION</strong></div>
+            <div>ZONE <strong>EDT</strong></div>
         </div>
-      </div>
-    </header>
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <div>
-            <div class="kicker">NECROVOLTIS // FIRST PUBLIC LABORATORY SESSION</div>
-            <h1>LAB <br>DAY <br>001 </h1>
-            <div class="hero-description"> The first public NECROVOLTIS laboratory session. A live experimental environment for observation, material testing, operation and archival capture. <strong>Transmission begins September 17, 2026 at 9PM EST.</strong>
+
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-copy">
+
+        <div>
+
+            <div class="kicker">
+                NECROVOLTIS // FIRST PUBLIC LABORATORY SESSION
             </div>
-          </div>
-          <div class="data-grid">
-            <div class="data-cell">
-              <div class="data-label">DATE</div>
-              <div class="data-value">09.17.26</div>
+
+            <h1>
+                LAB<br>
+                DAY<br>
+                001
+            </h1>
+
+            <div class="hero-description">
+                The first public NECROVOLTIS laboratory session.
+                A live experimental environment for observation,
+                material testing, operation and archival capture.
+                <strong>Transmission begins tonight at 21:00 EDT.</strong>
             </div>
-            <div class="data-cell">
-              <div class="data-label">ACTIVATION</div>
-              <div class="data-value">21:00</div>
-            </div>
-            <div class="data-cell">
-              <div class="data-label">ZONE</div>
-              <div class="data-value">EST / EDT</div>
-            </div>
-          </div>
+
         </div>
-        <div class="core-panel">
-          <div class="core-label">DIGITAL CORE / SESSION 001</div>
-          <div class="core-code">NV-001</div>
-          <div class="core">
+
+        <div class="data-grid">
+
+            <div class="data-cell">
+                <div class="data-label">DATE</div>
+                <div class="data-value">09.17.26</div>
+            </div>
+
+            <div class="data-cell">
+                <div class="data-label">ACTIVATION</div>
+                <div class="data-value">21:00</div>
+            </div>
+
+            <div class="data-cell">
+                <div class="data-label">ZONE</div>
+                <div class="data-value">EDT / UTC−4</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="core-panel">
+
+        <div class="core-label">
+            DIGITAL CORE / SESSION 001
+        </div>
+
+        <div class="core-code">
+            NV-001
+        </div>
+
+        <div class="core">
+
             <div class="core-orbit"></div>
+
             <div class="ring"></div>
-            <div class="core-text">N/V</div>
-          </div>
-          <div class="core-info">
+
+            <div class="core-text">
+                N/V
+            </div>
+
+        </div>
+
+        <div class="core-info">
             <span>CORE // 001</span>
             <span>LAB ACTIVATION</span>
-          </div>
         </div>
-      </section>
-      <!-- LIVE OBS FEED -->
-      <section class="live-section">
-        <div class="section-head">
-          <div class="section-title">LIVE FEED</div>
-          <div class="section-index">01 / BROADCAST CHANNEL</div>
-        </div>
-        <div class="live-feed">
-          <div class="feed-window" id="feedWindow">
+
+    </div>
+
+</section>
+
+
+<section class="live-section">
+
+    <div class="section-head">
+        <div class="section-title">LIVE FEED</div>
+        <div class="section-index">01 / BROADCAST CHANNEL</div>
+    </div>
+
+    <div class="live-feed">
+
+        <div class="feed-window" id="feedWindow">
+
             <!--
-                    THE PUBLIC STREAM PLAYER GOES HERE.
+                OBS CONNECTION:
 
-                    OBS DOES NOT CONNECT DIRECTLY TO GITHUB PAGES.
+                OBS
+                ↓
+                STREAMING SERVICE
+                ↓
+                PUBLIC EMBED URL
+                ↓
+                THIS WINDOW
 
-                    OBS → STREAMING SERVICE → THIS IFRAME
+                Leave STREAM_EMBED_URL empty until the
+                broadcast is ready.
 
-                    When you have your public stream embed URL,
-                    put it in STREAM_EMBED_URL below in the JavaScript.
+                NEVER place an OBS stream key here.
+            -->
 
-                    NEVER put your OBS STREAM KEY in this file.
-                -->
-            <iframe id="streamFrame" title="NECROVOLTIS LAB DAY 001 LIVE" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <iframe
+                id="streamFrame"
+                title="NECROVOLTIS LAB DAY 001 LIVE"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
             <div class="coming-soon">
-              <div class="coming-soon-main"> COMING SOON </div>
-              <div class="coming-soon-sub"> BROADCAST CHANNEL NOT YET ACTIVE </div>
-              <div class="feed-crosshair"></div>
+
+                <div class="coming-soon-main">
+                    COMING SOON
+                </div>
+
+                <div class="coming-soon-sub">
+                    BROADCAST CHANNEL NOT YET ACTIVE
+                </div>
+
+                <div class="feed-crosshair"></div>
+
             </div>
-            <div class="feed-corner tl"> NECROVOLTIS // LIVE </div>
-            <div class="feed-corner tr"> CH 001 </div>
-            <div class="feed-corner bl"> SIGNAL // STANDBY </div>
-            <div class="feed-corner br"> 16:9 / OBS </div>
-          </div>
-          <div class="feed-bar">
+
+            <div class="feed-corner tl">
+                NECROVOLTIS // LIVE
+            </div>
+
+            <div class="feed-corner tr">
+                CH 001
+            </div>
+
+            <div class="feed-corner bl">
+                SIGNAL // STANDBY
+            </div>
+
+            <div class="feed-corner br">
+                16:9 / OBS
+            </div>
+
+        </div>
+
+        <div class="feed-bar">
+
             <div class="feed-status">
-              <span class="feed-status-dot"></span>
-              <span id="feedStatus">FEED STANDBY</span>
+                <span class="feed-status-dot"></span>
+                <span id="feedStatus">FEED STANDBY</span>
             </div>
-            <div> LAB DAY 001 / 21:00 EST </div>
-          </div>
+
+            <div>
+                LAB DAY 001 / 21:00 EDT
+            </div>
+
         </div>
-      </section>
-      <!-- LAB COMPONENTS -->
-      <section>
-        <div class="section-head">
-          <div class="section-title">LAB DAY</div>
-          <div class="section-index">02 / SESSION STRUCTURE</div>
-        </div>
-        <div class="lab-grid">
-          <article class="lab-card">
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <div class="section-head">
+        <div class="section-title">LAB DAY</div>
+        <div class="section-index">02 / SESSION STRUCTURE</div>
+    </div>
+
+    <div class="lab-grid">
+
+        <article class="lab-card">
+
             <div class="card-number">MODULE 001</div>
+
             <div class="card-title">OBSERVATION</div>
-            <div class="card-text"> Conditions are established before intervention. Objects, systems and material behavior are documented as they appear inside the laboratory environment. </div>
-          </article>
-          <article class="lab-card">
+
+            <div class="card-text">
+                Conditions are established before intervention.
+                Objects, systems and material behavior are documented
+                as they appear inside the laboratory environment.
+            </div>
+
+        </article>
+
+        <article class="lab-card">
+
             <div class="card-number">MODULE 002</div>
+
             <div class="card-title">MATERIAL</div>
-            <div class="card-text"> Physical components enter the laboratory as inputs. Their properties, limits, interactions and failures become part of the experimental record. </div>
-          </article>
-          <article class="lab-card">
+
+            <div class="card-text">
+                Physical components enter the laboratory as inputs.
+                Their properties, limits, interactions and failures
+                become part of the experimental record.
+            </div>
+
+        </article>
+
+        <article class="lab-card">
+
             <div class="card-number">MODULE 003</div>
+
             <div class="card-title">ARCHIVE</div>
-            <div class="card-text"> The session itself becomes an artifact. Live operation, interruption, error and outcome are treated as archival material. </div>
-          </article>
-        </div>
-      </section>
-      <!-- PROTOCOL -->
-      <section>
-        <div class="section-head">
-          <div class="section-title">SESSION PROTOCOL</div>
-          <div class="section-index">03 / OPERATION</div>
-        </div>
-        <div class="protocol-grid">
-          <div class="protocol">
+
+            <div class="card-text">
+                The session itself becomes an artifact.
+                Live operation, interruption, error and outcome
+                are treated as archival material.
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <div class="section-head">
+        <div class="section-title">SESSION PROTOCOL</div>
+        <div class="section-index">03 / OPERATION</div>
+    </div>
+
+    <div class="protocol-grid">
+
+        <div class="protocol">
+
             <div class="protocol-number">01</div>
-            <div class="protocol-title">OPEN</div>
-            <div class="protocol-text"> Laboratory conditions are established. Transmission begins. </div>
-          </div>
-          <div class="protocol">
+
+            <div class="protocol-title">
+                OPEN
+            </div>
+
+            <div class="protocol-text">
+                Laboratory conditions are established.
+                Transmission begins.
+            </div>
+
+        </div>
+
+        <div class="protocol">
+
             <div class="protocol-number">02</div>
-            <div class="protocol-title">EXAMINE</div>
-            <div class="protocol-text"> Materials and systems are introduced and observed under active conditions. </div>
-          </div>
-          <div class="protocol">
+
+            <div class="protocol-title">
+                EXAMINE
+            </div>
+
+            <div class="protocol-text">
+                Materials and systems are introduced
+                and observed under active conditions.
+            </div>
+
+        </div>
+
+        <div class="protocol">
+
             <div class="protocol-number">03</div>
-            <div class="protocol-title">OPERATE</div>
-            <div class="protocol-text"> The laboratory becomes an active system. Processes are allowed to produce results. </div>
-          </div>
-          <div class="protocol">
+
+            <div class="protocol-title">
+                OPERATE
+            </div>
+
+            <div class="protocol-text">
+                The laboratory becomes an active system.
+                Processes are allowed to produce results.
+            </div>
+
+        </div>
+
+        <div class="protocol">
+
             <div class="protocol-number">04</div>
-            <div class="protocol-title">ARCHIVE</div>
-            <div class="protocol-text"> The resulting session enters the NECROVOLTIS laboratory record. </div>
-          </div>
+
+            <div class="protocol-title">
+                ARCHIVE
+            </div>
+
+            <div class="protocol-text">
+                The resulting session enters the NECROVOLTIS
+                laboratory record.
+            </div>
+
         </div>
-      </section>
-      <!-- COUNTDOWN -->
-      <section class="countdown-section">
-        <div class="section-head">
-          <div class="section-title">ACTIVATION COUNTDOWN</div>
-          <div class="section-index">04 / 09.17.26 / 21:00</div>
-        </div>
-        <div class="countdown">
-          <div class="time-unit">
+
+    </div>
+
+</section>
+
+
+<section class="countdown-section">
+
+    <div class="section-head">
+        <div class="section-title">ACTIVATION COUNTDOWN</div>
+        <div class="section-index">TONIGHT / 09.17.26 / 21:00</div>
+    </div>
+
+    <div class="countdown">
+
+        <div class="time-unit">
             <div class="time-number" id="days">00</div>
             <div class="time-label">DAYS</div>
-          </div>
-          <div class="time-unit">
+        </div>
+
+        <div class="time-unit">
             <div class="time-number" id="hours">00</div>
             <div class="time-label">HOURS</div>
-          </div>
-          <div class="time-unit">
+        </div>
+
+        <div class="time-unit">
             <div class="time-number" id="minutes">00</div>
             <div class="time-label">MINUTES</div>
-          </div>
-          <div class="time-unit">
+        </div>
+
+        <div class="time-unit">
             <div class="time-number" id="seconds">00</div>
             <div class="time-label">SECONDS</div>
-          </div>
         </div>
-        <div class="activation-note">
-          <span>ACTIVATION: SEPTEMBER 17, 2026 / 21:00 EASTERN</span>
-          <span id="countdownState">AWAITING ACTIVATION</span>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <span>NECROVOLTIS / AXAYACATL</span>
-      <span>LAB DAY 001 / PUBLIC TRANSMISSION</span>
-    </footer>
-    <script>
-      /*
+
+    </div>
+
+    <div class="activation-note">
+
+        <span>
+            ACTIVATION: 17 SEPTEMBER 2026 / 21:00 EDT
+        </span>
+
+        <span id="countdownState">
+            AWAITING ACTIVATION
+        </span>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+    <span>NECROVOLTIS / AXAYACATL</span>
+    <span>LAB DAY 001 / PUBLIC TRANSMISSION</span>
+</footer>
+
+
+<script>
+
+/*
 =========================================================
 NECROVOLTIS LIVE STREAM CONFIGURATION
 =========================================================
 
-RIGHT NOW:
-Leave this empty.
+Leave empty while preparing:
 
-The page will display:
-COMING SOON
+const STREAM_EMBED_URL = "";
 
-WHEN READY:
-Put your PUBLIC EMBED URL here.
+When your public livestream is ready, insert the
+PUBLIC EMBED URL here.
 
 Example:
 
 const STREAM_EMBED_URL =
     "https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1";
 
-The exact URL depends on the streaming service you use.
-
-IMPORTANT:
-Never put your OBS stream key in this HTML file.
-
-The architecture is:
-
-OBS
- ↓
-Streaming service
- ↓
-Public embed URL
- ↓
-NECROVOLTIS GitHub page
+Do NOT put your OBS stream key here.
 
 =========================================================
 */
-      const STREAM_EMBED_URL = "";
-      /* LIVE FEED */
-      const feedWindow = document.getElementById("feedWindow");
-      const streamFrame = document.getElementById("streamFrame");
-      const feedStatus = document.getElementById("feedStatus");
-      if (STREAM_EMBED_URL.trim() !== "") {
-        streamFrame.src = STREAM_EMBED_URL;
-        feedWindow.classList.add("live");
-        feedStatus.textContent = "LIVE FEED";
-      }
-      /* COUNTDOWN */
-      const activationTime = new Date("2026-09-17T21:00:00-04:00").getTime();
-      const daysElement = document.getElementById("days");
-      const hoursElement = document.getElementById("hours");
-      const minutesElement = document.getElementById("minutes");
-      const secondsElement = document.getElementById("seconds");
-      const countdownState = document.getElementById("countdownState");
 
-      function updateCountdown() {
-        const now = Date.now();
-        const distance = activationTime - now;
-        if (distance <= 0) {
-          daysElement.textContent = "00";
-          hoursElement.textContent = "00";
-          minutesElement.textContent = "00";
-          secondsElement.textContent = "00";
-          countdownState.textContent = "ACTIVATION WINDOW OPEN";
-          return;
-        }
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor(
-          (distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor(
-          (distance % (1000 * 60)) / 1000);
-        daysElement.textContent = String(days).padStart(2, "0");
-        hoursElement.textContent = String(hours).padStart(2, "0");
-        minutesElement.textContent = String(minutes).padStart(2, "0");
-        secondsElement.textContent = String(seconds).padStart(2, "0");
-      }
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    </script>
-  </body>
+const STREAM_EMBED_URL = "";
+
+
+/* LIVE FEED */
+
+const feedWindow = document.getElementById("feedWindow");
+const streamFrame = document.getElementById("streamFrame");
+const feedStatus = document.getElementById("feedStatus");
+
+if (STREAM_EMBED_URL.trim() !== "") {
+
+    streamFrame.src = STREAM_EMBED_URL;
+
+    feedWindow.classList.add("live");
+
+    feedStatus.textContent = "LIVE FEED";
+
+}
+
+
+/*
+=========================================================
+COUNTDOWN
+
+September 17, 2026
+21:00 Eastern Daylight Time
+UTC−04:00
+=========================================================
+*/
+
+const activationTime =
+    new Date("2026-09-17T21:00:00-04:00").getTime();
+
+const daysElement =
+    document.getElementById("days");
+
+const hoursElement =
+    document.getElementById("hours");
+
+const minutesElement =
+    document.getElementById("minutes");
+
+const secondsElement =
+    document.getElementById("seconds");
+
+const countdownState =
+    document.getElementById("countdownState");
+
+
+function updateCountdown() {
+
+    const now = Date.now();
+
+    const distance = activationTime - now;
+
+
+    if (distance <= 0) {
+
+        daysElement.textContent = "00";
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
+
+        countdownState.textContent =
+            "ACTIVATION WINDOW OPEN";
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (distance %
+            (1000 * 60)) /
+            1000
+        );
+
+
+    daysElement.textContent =
+        String(days).padStart(2, "0");
+
+    hoursElement.textContent =
+        String(hours).padStart(2, "0");
+
+    minutesElement.textContent =
+        String(minutes).padStart(2, "0");
+
+    secondsElement.textContent =
+        String(seconds).padStart(2, "0");
+
+}
+
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
 </html>
