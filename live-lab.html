@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -881,28 +882,12 @@ footer {
 
     <div class="live-feed">
 
-        <div class="feed-window" id="feedWindow">
-
-            <!--
-                OBS CONNECTION:
-
-                OBS
-                ↓
-                STREAMING SERVICE
-                ↓
-                PUBLIC EMBED URL
-                ↓
-                THIS WINDOW
-
-                Leave STREAM_EMBED_URL empty until the
-                broadcast is ready.
-
-                NEVER place an OBS stream key here.
-            -->
+        <div class="feed-window live" id="feedWindow">
 
             <iframe
                 id="streamFrame"
                 title="NECROVOLTIS LAB DAY 001 LIVE"
+                src="https://etharzipildmiragagag.taileab42c.ts.net/necrovoltis/"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowfullscreen>
             </iframe>
@@ -930,7 +915,7 @@ footer {
             </div>
 
             <div class="feed-corner bl">
-                SIGNAL // STANDBY
+                SIGNAL // LIVE
             </div>
 
             <div class="feed-corner br">
@@ -943,7 +928,7 @@ footer {
 
             <div class="feed-status">
                 <span class="feed-status-dot"></span>
-                <span id="feedStatus">FEED STANDBY</span>
+                <span id="feedStatus">LIVE FEED</span>
             </div>
 
             <div>
@@ -1145,42 +1130,45 @@ footer {
 
 /*
 =========================================================
-NECROVOLTIS LIVE STREAM CONFIGURATION
+NECROVOLTIS LIVE STREAM
 =========================================================
 
-Leave empty while preparing:
+OBS publishes locally to:
 
-const STREAM_EMBED_URL = "";
+http://127.0.0.1:8889/necrovoltis/whip
 
-When your public livestream is ready, insert the
-PUBLIC EMBED URL here.
+Public viewers use:
 
-Example:
-
-const STREAM_EMBED_URL =
-    "https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1";
-
-Do NOT put your OBS stream key here.
+https://etharzipildmiragagag.taileab42c.ts.net/necrovoltis/
 
 =========================================================
 */
 
-const STREAM_EMBED_URL = "";
+const STREAM_EMBED_URL =
+    "https://etharzipildmiragagag.taileab42c.ts.net/necrovoltis/";
 
 
 /* LIVE FEED */
 
-const feedWindow = document.getElementById("feedWindow");
-const streamFrame = document.getElementById("streamFrame");
-const feedStatus = document.getElementById("feedStatus");
+const feedWindow =
+    document.getElementById("feedWindow");
+
+const streamFrame =
+    document.getElementById("streamFrame");
+
+const feedStatus =
+    document.getElementById("feedStatus");
+
 
 if (STREAM_EMBED_URL.trim() !== "") {
 
-    streamFrame.src = STREAM_EMBED_URL;
+    streamFrame.src =
+        STREAM_EMBED_URL;
 
     feedWindow.classList.add("live");
 
-    feedStatus.textContent = "LIVE FEED";
+    feedStatus.textContent =
+        "LIVE FEED";
 
 }
 
@@ -1196,7 +1184,10 @@ UTC−04:00
 */
 
 const activationTime =
-    new Date("2026-09-17T21:00:00-04:00").getTime();
+    new Date(
+        "2026-09-17T21:00:00-04:00"
+    ).getTime();
+
 
 const daysElement =
     document.getElementById("days");
@@ -1216,17 +1207,26 @@ const countdownState =
 
 function updateCountdown() {
 
-    const now = Date.now();
+    const now =
+        Date.now();
 
-    const distance = activationTime - now;
+    const distance =
+        activationTime - now;
 
 
     if (distance <= 0) {
 
-        daysElement.textContent = "00";
-        hoursElement.textContent = "00";
-        minutesElement.textContent = "00";
-        secondsElement.textContent = "00";
+        daysElement.textContent =
+            "00";
+
+        hoursElement.textContent =
+            "00";
+
+        minutesElement.textContent =
+            "00";
+
+        secondsElement.textContent =
+            "00";
 
         countdownState.textContent =
             "ACTIVATION WINDOW OPEN";
@@ -1245,24 +1245,30 @@ function updateCountdown() {
 
     const hours =
         Math.floor(
-            (distance %
-            (1000 * 60 * 60 * 24)) /
+            (
+                distance %
+                (1000 * 60 * 60 * 24)
+            ) /
             (1000 * 60 * 60)
         );
 
 
     const minutes =
         Math.floor(
-            (distance %
-            (1000 * 60 * 60)) /
+            (
+                distance %
+                (1000 * 60 * 60)
+            ) /
             (1000 * 60)
         );
 
 
     const seconds =
         Math.floor(
-            (distance %
-            (1000 * 60)) /
+            (
+                distance %
+                (1000 * 60)
+            ) /
             1000
         );
 
@@ -1284,7 +1290,10 @@ function updateCountdown() {
 
 updateCountdown();
 
-setInterval(updateCountdown, 1000);
+setInterval(
+    updateCountdown,
+    1000
+);
 
 </script>
 
