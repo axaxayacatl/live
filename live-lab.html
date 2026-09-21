@@ -1,1298 +1,831 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NECROVOLTIS // LAB DAY 001</title>
+<title>NOETIC LEXICON™ PROTOTYPE EXPO</title>
 
-<meta name="description" content="NECROVOLTIS LAB DAY 001. First public laboratory session. September 17, 2026 at 21:00 EDT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap');
 
 :root {
-    --espresso: #211914;
-    --deep: #17120f;
-    --coffee: #4a3529;
-    --latte: #8b705c;
-    --cream: #eee5d5;
-    --milk: #f7f1e7;
-    --paper: #e4d9c8;
-    --ink: #18130f;
-    --muted: #76685b;
-    --line: rgba(33,25,20,.18);
+    --black: #020203;
+    --white: #f4f1f4;
+    --pink: #ffb6cf;
+    --darkpink: #d98ba8;
+    --grey: #77737a;
 }
 
 * {
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--black);
+    color: var(--white);
+    font-family: "IBM Plex Mono", monospace;
 }
 
 body {
-    margin: 0;
-    background:
-        radial-gradient(circle at 80% 10%, rgba(139,112,92,.16), transparent 28%),
-        radial-gradient(circle at 10% 80%, rgba(139,112,92,.10), transparent 30%),
-        var(--cream);
-    color: var(--ink);
-    font-family: "IBM Plex Mono", monospace;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: .16;
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent 3px,
-            rgba(33,25,20,.10) 4px
-        );
+.poster {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--black);
+    position: relative;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: .08;
-    background-image:
-        radial-gradient(rgba(33,25,20,.8) .5px, transparent .5px);
-    background-size: 5px 5px;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.topbar {
-    background: var(--espresso);
-    color: var(--milk);
-    min-height: 32px;
-    padding: 7px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    font-size: 9px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-}
-
-.topbar-left,
-.topbar-right {
-    display: flex;
-    gap: 22px;
-    align-items: center;
-}
-
-.status-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--milk);
-    display: inline-block;
-    border-radius: 50%;
-    margin-right: 7px;
-}
-
-header {
-    border-bottom: 1px solid var(--line);
-}
-
-.brand-row {
-    max-width: 1500px;
-    margin: auto;
-    padding: 28px 28px 22px;
+.top {
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 30px;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    border-bottom: 4px solid var(--white);
+    min-height: 72px;
+    padding: 0 24px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .08em;
 }
 
-.brand {
+.top .center {
     font-family: "Silkscreen", monospace;
-    font-size: clamp(26px, 5vw, 64px);
-    letter-spacing: -.06em;
-    line-height: .9;
+    color: var(--pink);
+    text-align: center;
 }
 
-.brand-sub {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-}
-
-.edition {
+.top .right {
     text-align: right;
-    font-size: 9px;
-    line-height: 1.8;
-    color: var(--muted);
-}
-
-.edition strong {
-    color: var(--ink);
-    font-weight: 600;
-}
-
-main {
-    max-width: 1500px;
-    margin: auto;
-    padding: 0 28px 100px;
 }
 
 .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
-    min-height: 540px;
-    border-bottom: 1px solid var(--line);
+    position: relative;
+    min-height: 530px;
+    border-bottom: 4px solid var(--white);
+    overflow: hidden;
+    padding: 30px 24px;
 }
 
-.hero-copy {
-    padding: 65px 50px 65px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.kicker {
-    font-size: 9px;
-    letter-spacing: .2em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 18px;
-}
-
-h1 {
+.hero h1 {
+    position: relative;
+    z-index: 4;
     margin: 0;
     font-family: "Silkscreen", monospace;
-    font-size: clamp(46px, 9vw, 125px);
-    line-height: .82;
+    font-size: clamp(48px, 10vw, 150px);
+    line-height: .84;
     letter-spacing: -.08em;
-    font-weight: 400;
+    max-width: 900px;
+    text-transform: uppercase;
 }
 
-.hero-description {
-    max-width: 670px;
-    margin-top: 34px;
-    font-size: 13px;
-    line-height: 1.8;
+.hero h1 span {
+    color: var(--pink);
 }
 
-.hero-description strong {
-    font-weight: 600;
+.hero h1 strong {
+    display: inline-block;
+    background: var(--white);
+    color: var(--black);
+    padding: 4px 14px 7px;
+    font-weight: 700;
 }
 
-.data-grid {
-    margin-top: 45px;
+.stamp {
+    position: absolute;
+    z-index: 8;
+    right: 24px;
+    top: 32px;
+    border: 4px solid var(--pink);
+    color: var(--pink);
+    padding: 13px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    transform: rotate(3deg);
+}
+
+.concept {
+    position: absolute;
+    z-index: 8;
+    left: 24px;
+    bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    max-width: 650px;
+}
+
+.concept span {
+    border: 2px solid var(--white);
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--black);
+}
+
+.concept span:first-child {
+    background: var(--pink);
+    color: var(--black);
+    border-color: var(--pink);
+}
+
+.moon-stage {
+    position: absolute;
+    z-index: 2;
+    width: min(72vw, 680px);
+    height: min(72vw, 680px);
+    right: -30px;
+    bottom: -280px;
+}
+
+.moon {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--pink);
+    border: 9px solid var(--white);
+    box-shadow:
+        0 0 0 16px var(--black),
+        0 0 0 20px var(--white);
+    overflow: hidden;
+}
+
+.moon-shadow {
+    position: absolute;
+    width: 74%;
+    height: 74%;
+    border-radius: 50%;
+    background: var(--black);
+    left: -13%;
+    top: -7%;
+}
+
+.moon-cut {
+    position: absolute;
+    width: 150%;
+    height: 30px;
+    background: var(--white);
+    left: -20%;
+    top: 48%;
+    transform: rotate(-17deg);
+    box-shadow: 0 8px 0 var(--black);
+}
+
+.moon-cut.two {
+    width: 90%;
+    height: 8px;
+    background: var(--pink);
+    left: 28%;
+    top: 61%;
+    transform: rotate(-17deg);
+    box-shadow: none;
+}
+
+.moon-mark {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 6px solid var(--black);
+    left: 59%;
+    top: 34%;
+}
+
+.moon-mark.two {
+    width: 16px;
+    height: 70px;
+    left: 72%;
+    top: 52%;
+    transform: rotate(32deg);
+}
+
+.moon-mark.three {
+    width: 55px;
+    height: 8px;
+    left: 45%;
+    top: 70%;
+    background: var(--black);
+    border: 0;
+    transform: rotate(-17deg);
+}
+
+.lunar-label {
+    position: absolute;
+    z-index: 10;
+    left: 24px;
+    top: 150px;
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: var(--pink);
+}
+
+.lunar-command {
+    position: absolute;
+    z-index: 10;
+    left: 24px;
+    top: 175px;
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(20px, 4vw, 46px);
+    color: var(--white);
+}
+
+.zero {
+    position: absolute;
+    z-index: 1;
+    right: 30%;
+    top: 40px;
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(100px, 22vw, 300px);
+    color: rgba(255, 182, 207, .08);
+}
+
+.info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 4px solid var(--white);
 }
 
-.data-cell {
-    padding: 15px;
-    border-right: 1px solid var(--line);
+.info > div {
+    min-height: 150px;
+    padding: 22px;
+    border-right: 4px solid var(--white);
 }
 
-.data-cell:last-child {
+.info > div:last-child {
     border-right: 0;
 }
 
-.data-label {
-    font-size: 8px;
-    color: var(--muted);
-    letter-spacing: .16em;
-    margin-bottom: 8px;
+.label {
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin-bottom: 12px;
 }
 
-.data-value {
-    font-size: 12px;
-    font-weight: 600;
+.value {
+    font-family: "Silkscreen", monospace;
+    font-size: 25px;
+    line-height: 1.2;
 }
 
-.core-panel {
-    background: var(--espresso);
-    color: var(--milk);
-    position: relative;
-    overflow: hidden;
-    min-height: 540px;
+.countdown {
+    font-family: "Silkscreen", monospace;
+    color: var(--pink);
+    font-size: clamp(24px, 4vw, 48px);
+    line-height: 1;
+    white-space: nowrap;
 }
 
-.core-panel::before {
-    content: "";
-    position: absolute;
-    inset: 30px;
-    border: 1px solid rgba(247,241,231,.17);
+.broadcast {
+    border-bottom: 4px solid var(--white);
 }
 
-.core-panel::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(247,241,231,.1);
-}
-
-.core-label {
-    position: absolute;
-    top: 48px;
-    left: 50px;
-    font-size: 8px;
-    letter-spacing: .2em;
-    color: rgba(247,241,231,.55);
-}
-
-.core-code {
-    position: absolute;
-    right: 50px;
-    top: 48px;
-    font-size: 8px;
-    letter-spacing: .15em;
-    color: rgba(247,241,231,.55);
-}
-
-.core {
-    position: absolute;
-    width: min(72%, 390px);
-    aspect-ratio: 1;
-    left: 50%;
-    top: 52%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 1px solid rgba(247,241,231,.25);
-}
-
-.core::before,
-.core::after {
-    content: "";
-    position: absolute;
-    inset: 12%;
-    border-radius: 50%;
-    border: 1px solid rgba(247,241,231,.18);
-}
-
-.core::after {
-    inset: 27%;
-    border-color: rgba(247,241,231,.32);
-}
-
-.ring {
-    position: absolute;
-    inset: 40%;
-    border-radius: 50%;
-    border: 1px solid rgba(247,241,231,.65);
-}
-
-.ring::before {
-    content: "";
-    position: absolute;
-    width: 180%;
-    height: 1px;
-    left: -40%;
-    top: 50%;
-    background: rgba(247,241,231,.28);
-}
-
-.ring::after {
-    content: "";
-    position: absolute;
-    height: 180%;
-    width: 1px;
-    left: 50%;
-    top: -40%;
-    background: rgba(247,241,231,.28);
-}
-
-.core-text {
-    position: absolute;
-    inset: 0;
+.broadcast-head {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    font-family: "Silkscreen", monospace;
-    font-size: clamp(25px, 5vw, 58px);
-    letter-spacing: -.08em;
+    padding: 16px 22px;
+    border-bottom: 4px solid var(--white);
 }
 
-.core-orbit {
-    position: absolute;
-    width: 120%;
-    height: 45%;
-    left: -10%;
-    top: 27%;
-    border: 1px solid rgba(247,241,231,.15);
+.live {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+}
+
+.live-dot {
+    width: 13px;
+    height: 13px;
+    background: var(--pink);
     border-radius: 50%;
-    transform: rotate(-22deg);
+    animation: pulse 1.2s infinite;
 }
 
-.core-info {
-    position: absolute;
-    bottom: 48px;
-    left: 50px;
-    right: 50px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 8px;
-    letter-spacing: .14em;
-    color: rgba(247,241,231,.55);
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .35;
+    }
 }
 
-section {
-    border-bottom: 1px solid var(--line);
-}
-
-.section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 20px 0;
-    gap: 20px;
-}
-
-.section-title {
-    font-family: "Silkscreen", monospace;
-    font-size: 14px;
-    letter-spacing: -.04em;
-}
-
-.section-index {
-    font-size: 8px;
-    color: var(--muted);
-    letter-spacing: .16em;
-}
-
-/* LIVE FEED */
-
-.live-section {
-    padding-bottom: 40px;
-}
-
-.live-feed {
-    background: var(--espresso);
-    padding: 18px;
-    color: var(--milk);
-}
-
-.feed-window {
-    position: relative;
+.stream-holder {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background:
-        radial-gradient(circle at center, rgba(139,112,92,.08), transparent 35%),
-        #17120f;
+    min-height: 360px;
+    background: #080709;
+    position: relative;
     overflow: hidden;
-    border: 1px solid rgba(247,241,231,.13);
 }
 
-.feed-window::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 5;
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0,
-            transparent 3px,
-            rgba(247,241,231,.035) 4px
-        );
-}
-
-.feed-window iframe {
+.stream-holder iframe {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
-    display: none;
-    z-index: 2;
 }
 
-.feed-window.live iframe {
-    display: block;
-}
-
-.feed-window.live .coming-soon {
-    display: none;
-}
-
-.feed-corner {
-    position: absolute;
-    z-index: 10;
-    font-size: 8px;
-    letter-spacing: .15em;
-    color: rgba(247,241,231,.5);
-    pointer-events: none;
-}
-
-.feed-corner.tl {
-    top: 16px;
-    left: 18px;
-}
-
-.feed-corner.tr {
-    top: 16px;
-    right: 18px;
-}
-
-.feed-corner.bl {
-    bottom: 16px;
-    left: 18px;
-}
-
-.feed-corner.br {
-    bottom: 16px;
-    right: 18px;
-}
-
-.coming-soon {
+.stream-placeholder {
     position: absolute;
     inset: 0;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 3;
+    flex-direction: column;
+    gap: 18px;
+    border: 1px solid #27242a;
+    background:
+        linear-gradient(90deg, transparent 49.8%, #161318 50%, transparent 50.2%),
+        linear-gradient(0deg, transparent 49.8%, #161318 50%, transparent 50.2%);
+    background-size: 48px 48px;
 }
 
-.coming-soon-main {
+.stream-placeholder .signal {
     font-family: "Silkscreen", monospace;
-    font-size: clamp(20px, 4vw, 50px);
-    letter-spacing: -.06em;
+    color: var(--pink);
+    font-size: clamp(24px, 5vw, 58px);
+    text-align: center;
 }
 
-.coming-soon-sub {
-    margin-top: 14px;
-    font-size: 8px;
-    color: rgba(247,241,231,.48);
-    letter-spacing: .18em;
+.stream-placeholder p {
+    margin: 0;
+    color: var(--grey);
+    font-size: 11px;
+    letter-spacing: .08em;
 }
 
-.feed-crosshair {
-    position: absolute;
-    width: 90px;
-    height: 90px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: .12;
-}
-
-.feed-crosshair::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    top: 50%;
-    background: var(--milk);
-}
-
-.feed-crosshair::after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 1px;
-    left: 50%;
-    background: var(--milk);
-}
-
-.feed-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 14px 3px 2px;
-    font-size: 8px;
-    letter-spacing: .14em;
-    color: rgba(247,241,231,.58);
-}
-
-.feed-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.feed-status-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgba(247,241,231,.5);
-}
-
-.feed-window.live + .feed-bar .feed-status-dot {
-    background: var(--milk);
-}
-
-/* LAB GRID */
-
-.lab-grid {
+.commands {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 4px solid var(--white);
 }
 
-.lab-card {
-    min-height: 250px;
-    padding: 30px;
-    border-right: 1px solid var(--line);
+.command {
+    min-height: 130px;
+    padding: 20px;
+    border-right: 4px solid var(--white);
 }
 
-.lab-card:last-child {
+.command:last-child {
     border-right: 0;
 }
 
-.card-number {
-    font-size: 8px;
-    color: var(--muted);
-    letter-spacing: .16em;
+.command-number {
+    color: var(--pink);
+    font-size: 11px;
+    margin-bottom: 18px;
 }
 
-.card-title {
+.command-text {
+    font-family: "Silkscreen", monospace;
+    font-size: clamp(16px, 2vw, 24px);
+    line-height: 1.2;
+}
+
+.clauneck {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    min-height: 360px;
+    border-bottom: 4px solid var(--white);
+}
+
+.clauneck-label {
+    border-right: 4px solid var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: var(--pink);
     font-family: "Silkscreen", monospace;
     font-size: 18px;
-    margin-top: 42px;
+    letter-spacing: .1em;
 }
 
-.card-text {
+.demand {
+    padding: 30px;
+}
+
+.demand small {
+    display: block;
+    color: var(--pink);
+    margin-bottom: 25px;
     font-size: 11px;
-    line-height: 1.8;
-    color: #4d4137;
-    margin-top: 18px;
 }
 
-/* PROTOCOL */
-
-.protocol-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.protocol {
-    padding: 30px;
-    border-right: 1px solid var(--line);
-    min-height: 210px;
-}
-
-.protocol:last-child {
-    border-right: 0;
-}
-
-.protocol-number {
+.demand blockquote {
+    margin: 0;
     font-family: "Silkscreen", monospace;
-    font-size: 23px;
-}
-
-.protocol-title {
-    margin-top: 35px;
-    font-size: 10px;
-    letter-spacing: .15em;
-    font-weight: 600;
-}
-
-.protocol-text {
-    margin-top: 12px;
-    font-size: 10px;
-    line-height: 1.7;
-    color: var(--muted);
-}
-
-/* COUNTDOWN */
-
-.countdown-section {
-    padding-bottom: 50px;
-}
-
-.countdown {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-}
-
-.time-unit {
-    padding: 30px;
-    border-right: 1px solid var(--line);
-}
-
-.time-unit:last-child {
-    border-right: 0;
-}
-
-.time-number {
-    font-family: "Silkscreen", monospace;
-    font-size: clamp(30px, 6vw, 70px);
+    font-size: clamp(27px, 5vw, 72px);
     line-height: 1;
+    max-width: 900px;
 }
 
-.time-label {
-    margin-top: 10px;
-    color: var(--muted);
-    font-size: 8px;
-    letter-spacing: .18em;
+.attribution {
+    margin-top: 28px;
+    font-size: 11px;
+    color: var(--grey);
 }
 
-.activation-note {
-    margin-top: 22px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    font-size: 9px;
-    color: var(--muted);
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 90px;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 11px;
+    font-weight: 700;
 }
 
-footer {
-    max-width: 1500px;
-    margin: auto;
-    padding: 25px 28px 50px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    font-size: 8px;
-    letter-spacing: .12em;
-    color: var(--muted);
+.footer .center {
+    text-align: center;
+    color: var(--pink);
 }
 
-/* MOBILE */
+.footer .right {
+    text-align: right;
+}
 
-@media (max-width: 850px) {
+@media (max-width: 800px) {
 
-    .topbar {
-        font-size: 7px;
+    .top {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .topbar-right {
+    .top .center {
         display: none;
     }
 
-    .brand-row {
-        grid-template-columns: 1fr;
-    }
-
-    .edition {
-        text-align: left;
-    }
-
-    main {
-        padding: 0 16px 70px;
+    .top .right {
+        text-align: right;
     }
 
     .hero {
+        min-height: 580px;
+    }
+
+    .stamp {
+        top: 110px;
+        left: 24px;
+        right: auto;
+    }
+
+    .moon-stage {
+        width: 560px;
+        height: 560px;
+        right: -150px;
+        bottom: -190px;
+    }
+
+    .lunar-label {
+        top: 215px;
+    }
+
+    .lunar-command {
+        top: 240px;
+    }
+
+    .info {
         grid-template-columns: 1fr;
     }
 
-    .hero-copy {
-        padding: 45px 0;
-    }
-
-    .core-panel {
-        min-height: 440px;
-    }
-
-    .data-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .data-cell {
+    .info > div {
         border-right: 0;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 4px solid var(--white);
     }
 
-    .data-cell:last-child {
+    .info > div:last-child {
         border-bottom: 0;
     }
 
-    .lab-grid,
-    .protocol-grid {
+    .commands {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .command:nth-child(2) {
+        border-right: 0;
+    }
+
+    .command:nth-child(1),
+    .command:nth-child(2) {
+        border-bottom: 4px solid var(--white);
+    }
+
+    .clauneck {
+        grid-template-columns: 70px 1fr;
+    }
+
+    .footer {
         grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 20px 24px;
     }
 
-    .lab-card,
-    .protocol {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-    }
-
-    .lab-card:last-child,
-    .protocol:last-child {
-        border-bottom: 0;
-    }
-
-    .countdown {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .time-unit:nth-child(2) {
-        border-right: 0;
-    }
-
-    .time-unit:nth-child(-n+2) {
-        border-bottom: 1px solid var(--line);
-    }
-
-    .activation-note {
-        flex-direction: column;
-    }
-
-    footer {
-        padding-left: 16px;
-        padding-right: 16px;
-        flex-direction: column;
+    .footer .center,
+    .footer .right {
+        text-align: left;
     }
 }
+
+@media (max-width: 520px) {
+
+    .hero {
+        min-height: 560px;
+        padding: 22px 16px;
+    }
+
+    .top {
+        padding: 0 16px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .stamp {
+        left: 16px;
+    }
+
+    .concept {
+        left: 16px;
+        bottom: 18px;
+    }
+
+    .lunar-label,
+    .lunar-command {
+        left: 16px;
+    }
+
+    .moon-stage {
+        width: 470px;
+        height: 470px;
+        right: -170px;
+        bottom: -130px;
+    }
+
+    .commands {
+        grid-template-columns: 1fr;
+    }
+
+    .command {
+        border-right: 0;
+        border-bottom: 4px solid var(--white);
+    }
+
+    .command:last-child {
+        border-bottom: 0;
+    }
+
+    .clauneck {
+        grid-template-columns: 55px 1fr;
+    }
+
+    .demand {
+        padding: 22px;
+    }
+
+    .stream-holder {
+        min-height: 240px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
-    <div class="topbar-left">
-        <span><span class="status-dot"></span>SYSTEM ONLINE</span>
-        <span>NECROVOLTIS</span>
-    </div>
+<main class="poster">
 
-    <div class="topbar-right">
-        <span>LABORATORY / PUBLIC SESSION</span>
-        <span>001</span>
-    </div>
-</div>
+    <header class="top">
+        <div>NOETIC LEXICON™</div>
+        <div class="center">PROTOTYPE EXPO</div>
+        <div class="right">000</div>
+    </header>
 
-<header>
-    <div class="brand-row">
+    <section class="hero">
+
+        <div class="zero">000</div>
+
+        <h1>
+            PROTO<br>
+            <span>TYPE</span>
+            <strong>EXPO</strong>
+        </h1>
+
+        <div class="stamp">
+            SEPTEMBER 22<br>
+            7:00 PM<br>
+            LIVE
+        </div>
+
+        <div class="moon-stage">
+            <div class="moon">
+                <div class="moon-shadow"></div>
+                <div class="moon-cut"></div>
+                <div class="moon-cut two"></div>
+                <div class="moon-mark"></div>
+                <div class="moon-mark two"></div>
+                <div class="moon-mark three"></div>
+            </div>
+        </div>
+
+        <div class="concept">
+            <span>RAGE / SOULLESS</span>
+            <span>LUNAR MASSACRE / DICTATORSHIP / PROTOTYPE</span>
+            <span>LIVE / 07:00</span>
+        </div>
+
+    </section>
+
+    <section class="info">
 
         <div>
-            <div class="brand">NECROVOLTIS</div>
-            <div class="brand-sub">porous archive / experimental laboratory</div>
+            <div class="label">EVENT</div>
+            <div class="value">
+                SEPTEMBER 22<br>
+                7:00 PM
+            </div>
         </div>
-
-        <div class="edition">
-            <div>SESSION <strong>001</strong></div>
-            <div>STATUS <strong>PRE ACTIVATION</strong></div>
-            <div>ZONE <strong>EDT</strong></div>
-        </div>
-
-    </div>
-</header>
-
-<main>
-
-<section class="hero">
-
-    <div class="hero-copy">
 
         <div>
+            <div class="label">COUNTDOWN</div>
+            <div class="countdown" id="countdown">
+                00:00:00:00
+            </div>
+        </div>
 
-            <div class="kicker">
-                NECROVOLTIS // FIRST PUBLIC LABORATORY SESSION
+        <div>
+            <div class="label">ORDER</div>
+            <div class="value">
+                REPORT.<br>
+                OPEN.<br>
+                REMAIN.<br>
+                CONTINUE.
+            </div>
+        </div>
+
+    </section>
+
+    <section class="broadcast">
+
+        <div class="broadcast-head">
+            <div class="live">
+                <span class="live-dot"></span>
+                LIVE TRANSMISSION
             </div>
 
-            <h1>
-                LAB<br>
-                DAY<br>
-                001
-            </h1>
+            <div id="stream-status">
+                STANDBY
+            </div>
+        </div>
 
-            <div class="hero-description">
-                The first public NECROVOLTIS laboratory session.
-                A live experimental environment for observation,
-                material testing, operation and archival capture.
-                <strong>Transmission begins tonight at 21:00 EDT.</strong>
+        <div class="stream-holder" id="streamHolder">
+
+            <div class="stream-placeholder" id="streamPlaceholder">
+                <div class="signal">SIGNAL STANDBY</div>
+                <p>THE TRANSMISSION WILL APPEAR HERE</p>
             </div>
 
         </div>
 
-        <div class="data-grid">
+    </section>
 
-            <div class="data-cell">
-                <div class="data-label">DATE</div>
-                <div class="data-value">09.17.26</div>
-            </div>
+    <section class="commands">
 
-            <div class="data-cell">
-                <div class="data-label">ACTIVATION</div>
-                <div class="data-value">21:00</div>
-            </div>
+        <div class="command">
+            <div class="command-number">01</div>
+            <div class="command-text">BUILD IT.</div>
+        </div>
 
-            <div class="data-cell">
-                <div class="data-label">ZONE</div>
-                <div class="data-value">EDT / UTC−4</div>
+        <div class="command">
+            <div class="command-number">02</div>
+            <div class="command-text">OPEN IT.</div>
+        </div>
+
+        <div class="command">
+            <div class="command-number">03</div>
+            <div class="command-text">SHOW WHAT IS INSIDE.</div>
+        </div>
+
+        <div class="command">
+            <div class="command-number">04</div>
+            <div class="command-text">CONTINUE.</div>
+        </div>
+
+    </section>
+
+    <section class="clauneck">
+
+        <div class="clauneck-label">
+            CLAUNECK
+        </div>
+
+        <div class="demand">
+
+            <small>DEMAND // 000</small>
+
+            <blockquote>
+                YOU WILL<br>
+                BUILD IT.<br>
+                YOU WILL<br>
+                OPEN IT.<br>
+                YOU WILL SHOW<br>
+                ME WHAT IS<br>
+                INSIDE.
+            </blockquote>
+
+            <div class="attribution">
+                CLAUNECK // 000
             </div>
 
         </div>
 
-    </div>
-
-    <div class="core-panel">
-
-        <div class="core-label">
-            DIGITAL CORE / SESSION 001
-        </div>
-
-        <div class="core-code">
-            NV-001
-        </div>
-
-        <div class="core">
-
-            <div class="core-orbit"></div>
-
-            <div class="ring"></div>
-
-            <div class="core-text">
-                N/V
-            </div>
-
-        </div>
-
-        <div class="core-info">
-            <span>CORE // 001</span>
-            <span>LAB ACTIVATION</span>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="live-section">
-
-    <div class="section-head">
-        <div class="section-title">LIVE FEED</div>
-        <div class="section-index">01 / BROADCAST CHANNEL</div>
-    </div>
-
-    <div class="live-feed">
-
-        <div class="feed-window live" id="feedWindow">
-
-            <iframe
-                id="streamFrame"
-                title="NECROVOLTIS LAB DAY 001 LIVE"
-                src="https://etharzipildmiragagag.taileab42c.ts.net/necrovoltis/"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-
-            <div class="coming-soon">
-
-                <div class="coming-soon-main">
-                    COMING SOON
-                </div>
-
-                <div class="coming-soon-sub">
-                    BROADCAST CHANNEL NOT YET ACTIVE
-                </div>
-
-                <div class="feed-crosshair"></div>
-
-            </div>
-
-            <div class="feed-corner tl">
-                NECROVOLTIS // LIVE
-            </div>
-
-            <div class="feed-corner tr">
-                CH 001
-            </div>
-
-            <div class="feed-corner bl">
-                SIGNAL // LIVE
-            </div>
-
-            <div class="feed-corner br">
-                16:9 / OBS
-            </div>
-
-        </div>
-
-        <div class="feed-bar">
-
-            <div class="feed-status">
-                <span class="feed-status-dot"></span>
-                <span id="feedStatus">LIVE FEED</span>
-            </div>
-
-            <div>
-                LAB DAY 001 / 21:00 EDT
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section>
-
-    <div class="section-head">
-        <div class="section-title">LAB DAY</div>
-        <div class="section-index">02 / SESSION STRUCTURE</div>
-    </div>
-
-    <div class="lab-grid">
-
-        <article class="lab-card">
-
-            <div class="card-number">MODULE 001</div>
-
-            <div class="card-title">OBSERVATION</div>
-
-            <div class="card-text">
-                Conditions are established before intervention.
-                Objects, systems and material behavior are documented
-                as they appear inside the laboratory environment.
-            </div>
-
-        </article>
-
-        <article class="lab-card">
-
-            <div class="card-number">MODULE 002</div>
-
-            <div class="card-title">MATERIAL</div>
-
-            <div class="card-text">
-                Physical components enter the laboratory as inputs.
-                Their properties, limits, interactions and failures
-                become part of the experimental record.
-            </div>
-
-        </article>
-
-        <article class="lab-card">
-
-            <div class="card-number">MODULE 003</div>
-
-            <div class="card-title">ARCHIVE</div>
-
-            <div class="card-text">
-                The session itself becomes an artifact.
-                Live operation, interruption, error and outcome
-                are treated as archival material.
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<section>
-
-    <div class="section-head">
-        <div class="section-title">SESSION PROTOCOL</div>
-        <div class="section-index">03 / OPERATION</div>
-    </div>
-
-    <div class="protocol-grid">
-
-        <div class="protocol">
-
-            <div class="protocol-number">01</div>
-
-            <div class="protocol-title">
-                OPEN
-            </div>
-
-            <div class="protocol-text">
-                Laboratory conditions are established.
-                Transmission begins.
-            </div>
-
-        </div>
-
-        <div class="protocol">
-
-            <div class="protocol-number">02</div>
-
-            <div class="protocol-title">
-                EXAMINE
-            </div>
-
-            <div class="protocol-text">
-                Materials and systems are introduced
-                and observed under active conditions.
-            </div>
-
-        </div>
-
-        <div class="protocol">
-
-            <div class="protocol-number">03</div>
-
-            <div class="protocol-title">
-                OPERATE
-            </div>
-
-            <div class="protocol-text">
-                The laboratory becomes an active system.
-                Processes are allowed to produce results.
-            </div>
-
-        </div>
-
-        <div class="protocol">
-
-            <div class="protocol-number">04</div>
-
-            <div class="protocol-title">
-                ARCHIVE
-            </div>
-
-            <div class="protocol-text">
-                The resulting session enters the NECROVOLTIS
-                laboratory record.
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="countdown-section">
-
-    <div class="section-head">
-        <div class="section-title">ACTIVATION COUNTDOWN</div>
-        <div class="section-index">TONIGHT / 09.17.26 / 21:00</div>
-    </div>
-
-    <div class="countdown">
-
-        <div class="time-unit">
-            <div class="time-number" id="days">00</div>
-            <div class="time-label">DAYS</div>
-        </div>
-
-        <div class="time-unit">
-            <div class="time-number" id="hours">00</div>
-            <div class="time-label">HOURS</div>
-        </div>
-
-        <div class="time-unit">
-            <div class="time-number" id="minutes">00</div>
-            <div class="time-label">MINUTES</div>
-        </div>
-
-        <div class="time-unit">
-            <div class="time-number" id="seconds">00</div>
-            <div class="time-label">SECONDS</div>
-        </div>
-
-    </div>
-
-    <div class="activation-note">
-
-        <span>
-            ACTIVATION: 17 SEPTEMBER 2026 / 21:00 EDT
-        </span>
-
-        <span id="countdownState">
-            AWAITING ACTIVATION
-        </span>
-
-    </div>
-
-</section>
+    </section>
+
+    <footer class="footer">
+        <div>NOETIC LEXICON™</div>
+        <div class="center">PROTOTYPE EXPO // 7:00 PM</div>
+        <div class="right">CONTINUE</div>
+    </footer>
 
 </main>
 
-
-<footer>
-    <span>NECROVOLTIS / AXAYACATL</span>
-    <span>LAB DAY 001 / PUBLIC TRANSMISSION</span>
-</footer>
-
-
 <script>
 
-/*
-=========================================================
-NECROVOLTIS LIVE STREAM
-=========================================================
-
-OBS publishes locally to:
-
-
-Public viewers use:
-
-
-
-=========================================================
-*/
-
-const STREAM_EMBED_URL =
-    "";
-
-
-/* LIVE FEED */
-
-const feedWindow =
-    document.getElementById("feedWindow");
-
-const streamFrame =
-    document.getElementById("streamFrame");
-
-const feedStatus =
-    document.getElementById("feedStatus");
-
-
-if (STREAM_EMBED_URL.trim() !== "") {
-
-    streamFrame.src =
-        STREAM_EMBED_URL;
-
-    feedWindow.classList.add("live");
-
-    feedStatus.textContent =
-        "LIVE FEED";
-
-}
-
-
-/*
-=========================================================
-COUNTDOWN
-
-September 17, 2026
-21:00 Eastern Daylight Time
-UTC−04:00
-=========================================================
-*/
-
-const activationTime =
-    new Date(
-        "2026-09-17T21:00:00-04:00"
-    ).getTime();
-
-
-const daysElement =
-    document.getElementById("days");
-
-const hoursElement =
-    document.getElementById("hours");
-
-const minutesElement =
-    document.getElementById("minutes");
-
-const secondsElement =
-    document.getElementById("seconds");
-
-const countdownState =
-    document.getElementById("countdownState");
-
+const EVENT_TIME = new Date("2026-09-22T19:00:00-04:00").getTime();
 
 function updateCountdown() {
 
-    const now =
-        Date.now();
+    const now = Date.now();
+    const difference = EVENT_TIME - now;
 
-    const distance =
-        activationTime - now;
+    const countdown = document.getElementById("countdown");
 
-
-    if (distance <= 0) {
-
-        daysElement.textContent =
-            "00";
-
-        hoursElement.textContent =
-            "00";
-
-        minutesElement.textContent =
-            "00";
-
-        secondsElement.textContent =
-            "00";
-
-        countdownState.textContent =
-            "ACTIVATION WINDOW OPEN";
-
+    if (difference <= 0) {
+        countdown.textContent = "LIVE NOW";
         return;
-
     }
 
+    const totalSeconds = Math.floor(difference / 1000);
 
-    const days =
-        Math.floor(
-            distance /
-            (1000 * 60 * 60 * 24)
-        );
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
-
-    const hours =
-        Math.floor(
-            (
-                distance %
-                (1000 * 60 * 60 * 24)
-            ) /
-            (1000 * 60 * 60)
-        );
-
-
-    const minutes =
-        Math.floor(
-            (
-                distance %
-                (1000 * 60 * 60)
-            ) /
-            (1000 * 60)
-        );
-
-
-    const seconds =
-        Math.floor(
-            (
-                distance %
-                (1000 * 60)
-            ) /
-            1000
-        );
-
-
-    daysElement.textContent =
-        String(days).padStart(2, "0");
-
-    hoursElement.textContent =
-        String(hours).padStart(2, "0");
-
-    minutesElement.textContent =
-        String(minutes).padStart(2, "0");
-
-    secondsElement.textContent =
+    countdown.textContent =
+        String(days).padStart(2, "0") + ":" +
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
         String(seconds).padStart(2, "0");
-
 }
 
-
 updateCountdown();
+setInterval(updateCountdown, 1000);
 
-setInterval(
-    updateCountdown,
-    1000
-);
+const STREAM_URL = "";
+
+function loadStream() {
+
+    const holder = document.getElementById("streamHolder");
+    const placeholder = document.getElementById("streamPlaceholder");
+    const status = document.getElementById("stream-status");
+
+    if (!STREAM_URL.trim()) {
+        status.textContent = "STANDBY";
+        return;
+    }
+
+    const iframe = document.createElement("iframe");
+
+    iframe.src = STREAM_URL;
+    iframe.title = "NOETIC LEXICON PROTOTYPE EXPO LIVE";
+    iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+
+    holder.appendChild(iframe);
+
+    placeholder.remove();
+
+    status.textContent = "LIVE";
+}
+
+loadStream();
 
 </script>
 
