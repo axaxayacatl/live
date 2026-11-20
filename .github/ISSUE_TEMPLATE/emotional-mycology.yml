@@ -1,0 +1,62 @@
+
+name: EMOTIONAL MYCOLOGY
+description: Submit your responses to NECROVOLTIS LAB DAY III.
+title: "[EMOTIONAL MYCOLOGY] Specimen submission"
+labels:
+  - emotional-mycology-vote
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## NECROVOLTIS LAB DAY III
+
+        Complete all three specimens. Select every response that applies.
+        Submissions are public GitHub issues.
+
+        Collection closes November 20, 2026 at 10:00 PM New York time.
+
+  - type: checkboxes
+    id: colonization
+    attributes:
+      label: COLONIZATION
+      description: How does an emotion take root in your environment?
+      options:
+        - label: Gradually, through repeated exposure
+        - label: Suddenly, after a significant event
+        - label: Through contact with another person
+        - label: By attaching itself to an existing memory
+        - label: Quietly, without being noticed
+        - label: It remains dormant until something activates it
+
+  - type: checkboxes
+    id: mycelial_network
+    attributes:
+      label: MYCELIAL NETWORK
+      description: How do your emotional experiences connect and spread?
+      options:
+        - label: One feeling branches into several others
+        - label: Different memories become interconnected
+        - label: Other people's emotions influence my own
+        - label: Some feelings compete for space
+        - label: Certain experiences remain isolated
+        - label: Connections form and disappear over time
+
+  - type: checkboxes
+    id: decomposition
+    attributes:
+      label: DECOMPOSITION
+      description: What happens when an emotional experience begins to decay?
+      options:
+        - label: It becomes a distant memory
+        - label: It transforms into another feeling
+        - label: It leaves traces in future experiences
+        - label: It returns under familiar conditions
+        - label: It gradually loses its influence
+        - label: It creates space for something new
+
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing to the collective specimen record.
+        Do not include private or identifying information.
