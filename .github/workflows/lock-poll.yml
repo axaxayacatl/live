@@ -1,0 +1,72 @@
+
+name: EMOTIONAL MYCOLOGY - COLLECTION LOCK
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  issues: write
+
+jobs:
+  enforce-deadline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enforce collection deadline
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_CREATED_AT: ${{ github.event.issue.created_at }}
+          DEADLINE: "2026-11-21T03:00:00Z"
+          LABEL: "emotional-mycology-vote"
+        run: |
+          set -euo pipefail
+
+          now="$(date -u +%s)"
+          deadline="$(date -u -d "$DEADLINE" +%s)"
+
+          if [ "$now" -lt "$deadline" ]; then
+            echo "Collection is still open."
+            exit 0
+          fi
+
+          if [ "$EVENT_NAME" = "issues" ]; then
+            created="$(date -u -d "$ISSUE_CREATED_AT" +%s)"
+
+            if [ "$created" -ge "$deadline" ]; then
+              gh issue close "$ISSUE_NUMBER" \
+                --repo "$REPOSITORY" \
+                --reason "not planned" \
+                --comment "This submission was created after the EMOTIONAL MYCOLOGY collection deadline. The collection is closed."
+            fi
+
+            exit 0
+          fi
+
+          echo "Deadline passed. Closing remaining open submissions."
+
+          gh issue list \
+            --repo "$REPOSITORY" \
+            --state open \
+            --label "$LABEL" \
+            --limit 1000 \
+            --json number \
+            --jq '.[].number' |
+          while read -r number; do
+            [ -n "$number" ] || continue
+
+            gh issue close "$number" \
+              --repo "$REPOSITORY" \
+              --reason "not planned" \
+              --comment "The 24-hour EMOTIONAL MYCOLOGY collection period has ended. This submission is now locked."
+          done
+
+          echo "Collection lock check completed."
