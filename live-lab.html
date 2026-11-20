@@ -1,834 +1,869 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NOETIC LEXICON™ PROTOTYPE EXPO</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10140b">
+<title>EMOTIONAL MYCOLOGY // NECROVOLTIS LAB DAY III</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap');
 
 :root {
-    --black: #020203;
-    --white: #f4f1f4;
-    --pink: #ffb6cf;
-    --darkpink: #d98ba8;
-    --grey: #77737a;
+  --black: #10140b;
+  --panel: #171e10;
+  --panel2: #1e2815;
+  --lime: #b6ff00;
+  --green: #78a900;
+  --muted: #82916c;
+  --pale: #e1edca;
+  --line: #3b5122;
+  --yellow: #d1e85c;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background: var(--black);
-    color: var(--white);
-    font-family: "IBM Plex Mono", monospace;
-}
+html { scroll-behavior: smooth; }
 
 body {
-    min-height: 100vh;
-    overflow-x: hidden;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #253516 0%, transparent 48%),
+    var(--black);
+  color: var(--pale);
+  font-family: 'IBM Plex Mono', monospace;
+  min-height: 100vh;
 }
 
-.poster {
-    width: 100%;
-    min-height: 100vh;
-    background: var(--black);
-    position: relative;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: .09;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    #b6ff00 4px
+  );
 }
 
-.top {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    border-bottom: 4px solid var(--white);
-    min-height: 72px;
-    padding: 0 24px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .08em;
+.shell {
+  width: min(940px, calc(100% - 32px));
+  margin: auto;
 }
 
-.top .center {
-    font-family: "Silkscreen", monospace;
-    color: var(--pink);
-    text-align: center;
+header {
+  padding: 25px 0 18px;
+  border-bottom: 1px solid var(--line);
 }
 
-.top .right {
-    text-align: right;
+.topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 
 .hero {
-    position: relative;
-    min-height: 530px;
-    border-bottom: 4px solid var(--white);
-    overflow: hidden;
-    padding: 30px 24px;
+  position: relative;
+  padding: 65px 0 42px;
+  overflow: hidden;
 }
 
-.hero h1 {
-    position: relative;
-    z-index: 4;
-    margin: 0;
-    font-family: "Silkscreen", monospace;
-    font-size: clamp(48px, 10vw, 150px);
-    line-height: .84;
-    letter-spacing: -.08em;
-    max-width: 900px;
-    text-transform: uppercase;
+.hero-art {
+  position: absolute;
+  width: 330px;
+  height: 250px;
+  right: -20px;
+  top: 15px;
+  opacity: .2;
+  pointer-events: none;
 }
 
-.hero h1 span {
-    color: var(--pink);
+.eyebrow {
+  color: var(--lime);
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
 }
 
-.hero h1 strong {
-    display: inline-block;
-    background: var(--white);
-    color: var(--black);
-    padding: 4px 14px 7px;
-    font-weight: 700;
+h1 {
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(31px, 7vw, 65px);
+  line-height: 1.25;
+  letter-spacing: -3px;
+  color: var(--lime);
+  margin: 0;
+  text-shadow: 4px 4px 0 #314b13;
+  position: relative;
+}
+
+.subtitle {
+  color: var(--pale);
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 570px;
+  margin-top: 20px;
 }
 
 .stamp {
-    position: absolute;
-    z-index: 8;
-    right: 24px;
-    top: 32px;
-    border: 4px solid var(--pink);
-    color: var(--pink);
-    padding: 13px 16px;
-    font-weight: 700;
-    font-size: 14px;
-    transform: rotate(3deg);
+  display: inline-block;
+  border: 1px solid var(--green);
+  color: var(--lime);
+  padding: 7px 10px;
+  font-size: 10px;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  transform: rotate(-1deg);
 }
 
-.concept {
-    position: absolute;
-    z-index: 8;
-    left: 24px;
-    bottom: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    max-width: 650px;
+.section-label {
+  color: var(--lime);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin: 0 0 14px;
 }
 
-.concept span {
-    border: 2px solid var(--white);
-    padding: 8px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    background: var(--black);
+.timer-panel {
+  background: linear-gradient(135deg, #1b2811, #11170c);
+  border: 1px solid var(--green);
+  padding: 25px;
+  margin: 15px 0 35px;
+  position: relative;
 }
 
-.concept span:first-child {
-    background: var(--pink);
-    color: var(--black);
-    border-color: var(--pink);
+.timer-panel::after {
+  content: "EVENT CLOCK";
+  position: absolute;
+  right: 14px;
+  top: -8px;
+  background: var(--black);
+  color: var(--lime);
+  padding: 0 8px;
+  font-size: 9px;
+  letter-spacing: 2px;
 }
 
-.moon-stage {
-    position: absolute;
-    z-index: 2;
-    width: min(72vw, 680px);
-    height: min(72vw, 680px);
-    right: -30px;
-    bottom: -280px;
+.timer {
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(30px, 8vw, 55px);
+  color: var(--lime);
+  letter-spacing: 2px;
+  margin: 8px 0;
+  text-shadow: 0 0 18px #8bc90040;
 }
 
-.moon {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: var(--pink);
-    border: 9px solid var(--white);
-    box-shadow:
-        0 0 0 16px var(--black),
-        0 0 0 20px var(--white);
-    overflow: hidden;
+.timer-caption {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.8;
 }
 
-.moon-shadow {
-    position: absolute;
-    width: 74%;
-    height: 74%;
-    border-radius: 50%;
-    background: var(--black);
-    left: -13%;
-    top: -7%;
+.status {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--lime);
+  border: 1px solid var(--green);
+  padding: 5px 8px;
+  margin-top: 10px;
 }
 
-.moon-cut {
-    position: absolute;
-    width: 150%;
-    height: 30px;
-    background: var(--white);
-    left: -20%;
-    top: 48%;
-    transform: rotate(-17deg);
-    box-shadow: 0 8px 0 var(--black);
+.status.closed {
+  color: var(--yellow);
+  border-color: var(--yellow);
 }
 
-.moon-cut.two {
-    width: 90%;
-    height: 8px;
-    background: var(--pink);
-    left: 28%;
-    top: 61%;
-    transform: rotate(-17deg);
-    box-shadow: none;
+.progress-track {
+  height: 5px;
+  background: #303c22;
+  margin-top: 20px;
 }
 
-.moon-mark {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    border: 6px solid var(--black);
-    left: 59%;
-    top: 34%;
+.progress-fill {
+  height: 100%;
+  background: var(--lime);
+  width: 0%;
+  transition: width .5s;
 }
 
-.moon-mark.two {
-    width: 16px;
-    height: 70px;
-    left: 72%;
-    top: 52%;
-    transform: rotate(32deg);
-}
-
-.moon-mark.three {
-    width: 55px;
-    height: 8px;
-    left: 45%;
-    top: 70%;
-    background: var(--black);
-    border: 0;
-    transform: rotate(-17deg);
-}
-
-.lunar-label {
-    position: absolute;
-    z-index: 10;
-    left: 24px;
-    top: 150px;
-    font-size: 11px;
-    letter-spacing: .12em;
-    color: var(--pink);
-}
-
-.lunar-command {
-    position: absolute;
-    z-index: 10;
-    left: 24px;
-    top: 175px;
-    font-family: "Silkscreen", monospace;
-    font-size: clamp(20px, 4vw, 46px);
-    color: var(--white);
-}
-
-.zero {
-    position: absolute;
-    z-index: 1;
-    right: 30%;
-    top: 40px;
-    font-family: "Silkscreen", monospace;
-    font-size: clamp(100px, 22vw, 300px);
-    color: rgba(255, 182, 207, .08);
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 40px;
 }
 
 .info {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: 4px solid var(--white);
+  border: 1px solid var(--line);
+  background: #141b0e;
+  padding: 14px;
 }
 
-.info > div {
-    min-height: 150px;
-    padding: 22px;
-    border-right: 4px solid var(--white);
+.info strong {
+  display: block;
+  font-family: 'Silkscreen', monospace;
+  font-size: 19px;
+  color: var(--lime);
+  margin-bottom: 7px;
 }
 
-.info > div:last-child {
-    border-right: 0;
+.info span {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.7;
 }
 
-.label {
-    color: var(--pink);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    margin-bottom: 12px;
+.intro {
+  color: #bdcba7;
+  font-size: 12px;
+  line-height: 2;
+  border-left: 2px solid var(--lime);
+  padding: 4px 0 4px 17px;
+  margin: 0 0 35px;
 }
 
-.value {
-    font-family: "Silkscreen", monospace;
-    font-size: 25px;
-    line-height: 1.2;
+.question {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 22px;
+  margin: 15px 0;
+  position: relative;
 }
 
-.countdown {
-    font-family: "Silkscreen", monospace;
-    color: var(--pink);
-    font-size: clamp(24px, 4vw, 48px);
-    line-height: 1;
-    white-space: nowrap;
+.question-number {
+  font-family: 'Silkscreen', monospace;
+  color: var(--green);
+  font-size: 11px;
 }
 
-.broadcast {
-    border-bottom: 4px solid var(--white);
+.question h3 {
+  font-size: 16px;
+  color: var(--lime);
+  margin: 10px 0;
 }
 
-.broadcast-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 22px;
-    border-bottom: 4px solid var(--white);
+.question p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 18px;
 }
 
-.live {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    letter-spacing: .08em;
+.options {
+  display: grid;
+  gap: 8px;
 }
 
-.live-dot {
-    width: 13px;
-    height: 13px;
-    background: var(--pink);
-    border-radius: 50%;
-    animation: pulse 1.2s infinite;
+.option {
+  border: 1px solid #344324;
+  background: #11170d;
+  padding: 12px;
+  color: var(--pale);
+  font-size: 11px;
+  line-height: 1.6;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: .35;
-    }
+.option::before {
+  content: "[ ] ";
+  color: var(--lime);
+  margin-right: 5px;
 }
 
-.stream-holder {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    min-height: 360px;
-    background: #080709;
-    position: relative;
-    overflow: hidden;
+.submit-area {
+  border: 1px dashed var(--green);
+  padding: 22px;
+  margin: 22px 0 40px;
 }
 
-.stream-holder iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+.submit-button {
+  display: inline-block;
+  background: var(--lime);
+  color: #10140b;
+  border: 0;
+  padding: 13px 18px;
+  font: 700 11px 'IBM Plex Mono', monospace;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 15px;
 }
 
-.stream-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 18px;
-    border: 1px solid #27242a;
-    background:
-        linear-gradient(90deg, transparent 49.8%, #161318 50%, transparent 50.2%),
-        linear-gradient(0deg, transparent 49.8%, #161318 50%, transparent 50.2%);
-    background-size: 48px 48px;
+.submit-button:hover {
+  background: var(--pale);
 }
 
-.stream-placeholder .signal {
-    font-family: "Silkscreen", monospace;
-    color: var(--pink);
-    font-size: clamp(24px, 5vw, 58px);
-    text-align: center;
+.submit-button.disabled {
+  opacity: .35;
+  pointer-events: none;
 }
 
-.stream-placeholder p {
-    margin: 0;
-    color: var(--grey);
-    font-size: 11px;
-    letter-spacing: .08em;
+.small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.9;
 }
 
-.commands {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-bottom: 4px solid var(--white);
+.results {
+  border: 1px solid var(--green);
+  background: #131a0d;
+  padding: 24px;
+  margin: 35px 0;
 }
 
-.command {
-    min-height: 130px;
-    padding: 20px;
-    border-right: 4px solid var(--white);
+.results.locked {
+  text-align: center;
+  padding: 45px 20px;
 }
 
-.command:last-child {
-    border-right: 0;
+.lock-symbol {
+  font-family: 'Silkscreen', monospace;
+  font-size: 30px;
+  color: var(--green);
+  margin-bottom: 15px;
 }
 
-.command-number {
-    color: var(--pink);
-    font-size: 11px;
-    margin-bottom: 18px;
+.result-row { margin: 20px 0; }
+
+.result-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  margin-bottom: 7px;
 }
 
-.command-text {
-    font-family: "Silkscreen", monospace;
-    font-size: clamp(16px, 2vw, 24px);
-    line-height: 1.2;
+.result-bar {
+  height: 9px;
+  background: #303c22;
 }
 
-.clauneck {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    min-height: 360px;
-    border-bottom: 4px solid var(--white);
+.result-bar span {
+  display: block;
+  height: 100%;
+  background: var(--lime);
 }
 
-.clauneck-label {
-    border-right: 4px solid var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    color: var(--pink);
-    font-family: "Silkscreen", monospace;
-    font-size: 18px;
-    letter-spacing: .1em;
+.result-question {
+  color: var(--lime);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 28px;
 }
 
-.demand {
-    padding: 30px;
+footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 0 45px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 2;
+  letter-spacing: 1px;
 }
 
-.demand small {
-    display: block;
-    color: var(--pink);
-    margin-bottom: 25px;
-    font-size: 11px;
+footer strong { color: var(--lime); }
+
+@media(max-width:600px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .hero { padding-top: 45px; }
+  .hero-art { width: 200px; right: -55px; }
+  .question { padding: 16px; }
+  .timer-panel { padding: 20px 15px; }
 }
-
-.demand blockquote {
-    margin: 0;
-    font-family: "Silkscreen", monospace;
-    font-size: clamp(27px, 5vw, 72px);
-    line-height: 1;
-    max-width: 900px;
-}
-
-.attribution {
-    margin-top: 28px;
-    font-size: 11px;
-    color: var(--grey);
-}
-
-.footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    min-height: 90px;
-    align-items: center;
-    padding: 0 24px;
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.footer .center {
-    text-align: center;
-    color: var(--pink);
-}
-
-.footer .right {
-    text-align: right;
-}
-
-@media (max-width: 800px) {
-
-    .top {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .top .center {
-        display: none;
-    }
-
-    .top .right {
-        text-align: right;
-    }
-
-    .hero {
-        min-height: 580px;
-    }
-
-    .stamp {
-        top: 110px;
-        left: 24px;
-        right: auto;
-    }
-
-    .moon-stage {
-        width: 560px;
-        height: 560px;
-        right: -150px;
-        bottom: -190px;
-    }
-
-    .lunar-label {
-        top: 215px;
-    }
-
-    .lunar-command {
-        top: 240px;
-    }
-
-    .info {
-        grid-template-columns: 1fr;
-    }
-
-    .info > div {
-        border-right: 0;
-        border-bottom: 4px solid var(--white);
-    }
-
-    .info > div:last-child {
-        border-bottom: 0;
-    }
-
-    .commands {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .command:nth-child(2) {
-        border-right: 0;
-    }
-
-    .command:nth-child(1),
-    .command:nth-child(2) {
-        border-bottom: 4px solid var(--white);
-    }
-
-    .clauneck {
-        grid-template-columns: 70px 1fr;
-    }
-
-    .footer {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 20px 24px;
-    }
-
-    .footer .center,
-    .footer .right {
-        text-align: left;
-    }
-}
-
-@media (max-width: 520px) {
-
-    .hero {
-        min-height: 560px;
-        padding: 22px 16px;
-    }
-
-    .top {
-        padding: 0 16px;
-    }
-
-    .hero h1 {
-        font-size: 48px;
-    }
-
-    .stamp {
-        left: 16px;
-    }
-
-    .concept {
-        left: 16px;
-        bottom: 18px;
-    }
-
-    .lunar-label,
-    .lunar-command {
-        left: 16px;
-    }
-
-    .moon-stage {
-        width: 470px;
-        height: 470px;
-        right: -170px;
-        bottom: -130px;
-    }
-
-    .commands {
-        grid-template-columns: 1fr;
-    }
-
-    .command {
-        border-right: 0;
-        border-bottom: 4px solid var(--white);
-    }
-
-    .command:last-child {
-        border-bottom: 0;
-    }
-
-    .clauneck {
-        grid-template-columns: 55px 1fr;
-    }
-
-    .demand {
-        padding: 22px;
-    }
-
-    .stream-holder {
-        min-height: 240px;
-    }
-
-}
-
 </style>
 </head>
 
 <body>
+<div class="shell">
 
-<main class="poster">
+<header>
+  <div class="topline">
+    <span>NECROVOLTIS // RESEARCH DIVISION</span>
+    <span>LAB DAY III // 003</span>
+  </div>
+</header>
 
-    <header class="top">
-        <div>NOETIC LEXICON™</div>
-        <div class="center">PROTOTYPE EXPO</div>
-        <div class="right">000</div>
-    </header>
+<main>
 
-    <section class="hero">
+<section class="hero">
+  <svg class="hero-art" viewBox="0 0 330 250"
+       fill="none" aria-hidden="true">
+    <g stroke="#b6ff00" stroke-width="2">
+      <path d="M160 250 L160 150 L100 105 L55 60
+      M160 150 L220 100 L280 45
+      M100 105 L105 55 L85 20
+      M220 100 L220 45 L245 15
+      M160 150 L145 90 L165 35
+      M160 190 L95 175 L35 190
+      M160 190 L230 175 L295 195"/>
+      <path d="M100 105 L60 120 L25 110
+      M220 100 L270 120 L310 105
+      M145 90 L110 70 M230 175 L260 220"/>
+    </g>
+    <g fill="#b6ff00">
+      <rect x="51" y="55" width="8" height="8"/>
+      <rect x="81" y="16" width="8" height="8"/>
+      <rect x="276" y="41" width="8" height="8"/>
+      <rect x="241" y="11" width="8" height="8"/>
+      <rect x="21" y="106" width="8" height="8"/>
+      <rect x="306" y="101" width="8" height="8"/>
+      <rect x="31" y="186" width="8" height="8"/>
+      <rect x="291" y="191" width="8" height="8"/>
+      <rect x="256" y="216" width="8" height="8"/>
+      <rect x="161" y="31" width="8" height="8"/>
+    </g>
+  </svg>
 
-        <div class="zero">000</div>
+  <div class="eyebrow">[ COLLECTIVE RESEARCH EVENT / 003 ]</div>
+  <h1>EMOTIONAL<br>MYCOLOGY</h1>
 
-        <h1>
-            PROTO<br>
-            <span>TYPE</span>
-            <strong>EXPO</strong>
-        </h1>
+  <div class="subtitle">
+    A collective inquiry into emotional growth, memory,
+    interconnected experiences, dormancy, and transformation.
+    Three questions. One shared specimen archive.
+  </div>
 
-        <div class="stamp">
-            SEPTEMBER 23<br>
-            18:00 EDT<br>
-            LIVE
-        </div>
+  <div class="stamp">NECROVOLTIS LAB DAY III</div>
+</section>
 
-        <div class="moon-stage">
-            <div class="moon">
-                <div class="moon-shadow"></div>
-                <div class="moon-cut"></div>
-                <div class="moon-cut two"></div>
-                <div class="moon-mark"></div>
-                <div class="moon-mark two"></div>
-                <div class="moon-mark three"></div>
-            </div>
-        </div>
+<section class="timer-panel">
+  <div class="section-label">01 // EVENT COUNTDOWN</div>
+  <div class="timer" id="countdown">24:00:00</div>
+  <div class="timer-caption" id="timer-caption">
+    TIME REMAINING UNTIL THE RESEARCH WINDOW CLOSES
+  </div>
+  <div class="status" id="event-status">INITIALIZING EVENT CLOCK</div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+  <p class="small" id="event-dates"></p>
+</section>
 
-        <div class="concept">
-            <span>RAGE / SOULLESS</span>
-            <span>LUNAR MASSACRE / DICTATORSHIP / PROTOTYPE</span>
-            <span>LIVE / 18:00 EDT</span>
-        </div>
+<div class="info-grid">
+  <div class="info">
+    <strong>03</strong>
+    <span>RESEARCH QUESTIONS</span>
+  </div>
+  <div class="info">
+    <strong>24H</strong>
+    <span>COLLECTION WINDOW</span>
+  </div>
+  <div class="info">
+    <strong>01</strong>
+    <span>COLLECTIVE DATASET</span>
+  </div>
+</div>
 
-    </section>
+<section>
+  <div class="section-label">02 // RESEARCH ABSTRACT</div>
+  <p class="intro">
+    Emotional experiences are approached as fungal systems:
+    they colonize environments, form networks, compete for
+    resources, remain dormant, and transform the conditions
+    around them. This poll collects different observations
+    of those processes as a shared research dataset.
+  </p>
+</section>
 
-    <section class="info">
+<section id="poll-section">
+  <div class="section-label">03 // SPECIMEN QUESTIONNAIRE</div>
 
-        <div>
-            <div class="label">EVENT</div>
-            <div class="value">
-                SEPTEMBER 23<br>
-                18:00 EDT
-            </div>
-        </div>
+  <div class="question">
+    <div class="question-number">SPECIMEN 001 / COLONIZATION</div>
+    <h3>How does an emotion take root in your environment?</h3>
+    <p>Select every pattern that applies to your experience.</p>
+    <div class="options">
+      <div class="option">Gradually, through repeated exposure</div>
+      <div class="option">Suddenly, after a significant event</div>
+      <div class="option">Through contact with another person</div>
+      <div class="option">By attaching itself to an existing memory</div>
+      <div class="option">Quietly, without being noticed</div>
+      <div class="option">It remains dormant until something activates it</div>
+    </div>
+  </div>
 
-        <div>
-            <div class="label">COUNTDOWN</div>
-            <div class="countdown" id="countdown">
-                00:00:00:00
-            </div>
-        </div>
+  <div class="question">
+    <div class="question-number">SPECIMEN 002 / MYCELIAL NETWORK</div>
+    <h3>How do your emotional experiences connect and spread?</h3>
+    <p>Select every pattern that applies to your experience.</p>
+    <div class="options">
+      <div class="option">One feeling branches into several others</div>
+      <div class="option">Different memories become interconnected</div>
+      <div class="option">Other people's emotions influence my own</div>
+      <div class="option">Some feelings compete for space</div>
+      <div class="option">Certain experiences remain isolated</div>
+      <div class="option">Connections form and disappear over time</div>
+    </div>
+  </div>
 
-        <div>
-            <div class="label">ORDER</div>
-            <div class="value">
-                REPORT.<br>
-                OPEN.<br>
-                REMAIN.<br>
-                CONTINUE.
-            </div>
-        </div>
+  <div class="question">
+    <div class="question-number">SPECIMEN 003 / DECOMPOSITION</div>
+    <h3>What happens when an emotional experience begins to decay?</h3>
+    <p>Select every pattern that applies to your experience.</p>
+    <div class="options">
+      <div class="option">It becomes a distant memory</div>
+      <div class="option">It transforms into another feeling</div>
+      <div class="option">It leaves traces in future experiences</div>
+      <div class="option">It returns under familiar conditions</div>
+      <div class="option">It gradually loses its influence</div>
+      <div class="option">It creates space for something new</div>
+    </div>
+  </div>
 
-    </section>
+  <div class="submit-area">
+    <div class="section-label">04 // SUBMIT SPECIMEN DATA</div>
+    <p class="small">
+      Responses are submitted through the project's GitHub Issue
+      Form. Select multiple answers in each question. GitHub
+      sign-in is required. Submissions are publicly visible.
+    </p>
+    <a class="submit-button" id="submit-button"
+       href="#" target="_blank" rel="noopener">
+      OPEN RESEARCH SUBMISSION FORM →
+    </a>
+    <p class="small" id="submit-message">
+      DATA COLLECTION OPENS AT 10:00 PM NEW YORK TIME.
+    </p>
+  </div>
+</section>
 
-    <section class="broadcast">
-
-        <div class="broadcast-head">
-            <div class="live">
-                <span class="live-dot"></span>
-                LIVE TRANSMISSION
-            </div>
-
-            <div id="stream-status">
-                STANDBY
-            </div>
-        </div>
-
-        <div class="stream-holder" id="streamHolder">
-
-            <div class="stream-placeholder" id="streamPlaceholder">
-                <div class="signal">SIGNAL STANDBY</div>
-                <p>THE TRANSMISSION WILL APPEAR HERE</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="commands">
-
-        <div class="command">
-            <div class="command-number">01</div>
-            <div class="command-text">BUILD IT.</div>
-        </div>
-
-        <div class="command">
-            <div class="command-number">02</div>
-            <div class="command-text">OPEN IT.</div>
-        </div>
-
-        <div class="command">
-            <div class="command-number">03</div>
-            <div class="command-text">SHOW WHAT IS INSIDE.</div>
-        </div>
-
-        <div class="command">
-            <div class="command-number">04</div>
-            <div class="command-text">CONTINUE.</div>
-        </div>
-
-    </section>
-
-    <section class="clauneck">
-
-        <div class="clauneck-label">
-            CLAUNECK
-        </div>
-
-        <div class="demand">
-
-            <small>DEMAND // 000</small>
-
-            <blockquote>
-                YOU WILL<br>
-                BUILD IT.<br>
-                YOU WILL<br>
-                OPEN IT.<br>
-                YOU WILL SHOW<br>
-                ME WHAT IS<br>
-                INSIDE.
-            </blockquote>
-
-            <div class="attribution">
-                CLAUNECK // 000
-            </div>
-
-        </div>
-
-    </section>
-
-    <footer class="footer">
-        <div>NOETIC LEXICON™</div>
-        <div class="center">PROTOTYPE EXPO // 18:00 EDT</div>
-        <div class="right">CONTINUE</div>
-    </footer>
+<section id="results-section">
+  <div class="section-label">05 // COLLECTIVE FINDINGS</div>
+  <div class="results locked" id="results">
+    <div class="lock-symbol">[ LOCKED ]</div>
+    <h3 style="color:var(--lime);font-family:'Silkscreen';font-size:15px">
+      RESULTS SEALED
+    </h3>
+    <p class="small">
+      Collective findings remain concealed during data collection.
+      The complete results will be revealed when the 24-hour
+      research window closes.
+    </p>
+    <p class="small" id="results-countdown">
+      RESULTS RELEASE: NOVEMBER 20, 2026 / 10:00 PM NEW YORK TIME
+    </p>
+  </div>
+</section>
 
 </main>
 
+<footer>
+  <strong>NECROVOLTIS // EMOTIONAL MYCOLOGY</strong><br>
+  LAB DAY III / COLLECTIVE RESEARCH ARCHIVE<br>
+  GITHUB PAGES // GITHUB ISSUE DATA STORAGE<br>
+  RESULTS ARE PERIODICALLY REFRESHED, NOT LIVE.
+</footer>
+
+</div>
+
 <script>
+/* =====================================================
+   GITHUB PROJECT CONFIGURATION
+   Replace these two values with your repository details.
+   ===================================================== */
 
-const EVENT_TIME = new Date("2026-09-23T18:00:00-04:00").getTime();
+const GITHUB_OWNER = "YOUR_GITHUB_USERNAME";
+const GITHUB_REPO = "YOUR_REPOSITORY_NAME";
 
-function updateCountdown() {
+const ISSUE_TEMPLATE = "emotional-mycology.yml";
+const ISSUE_LABEL = "emotional-mycology-vote";
 
-    const now = Date.now();
-    const difference = EVENT_TIME - now;
+/* New York event schedule: November 19, 2026 at 10 PM. */
+const EVENT_START = "2026-11-19T22:00:00-05:00";
+const EVENT_DURATION = 24 * 60 * 60 * 1000;
+const EVENT_END = new Date(EVENT_START).getTime() + EVENT_DURATION;
 
-    const countdown = document.getElementById("countdown");
+const REFRESH_INTERVAL = 5 * 60 * 1000;
 
-    if (difference <= 0) {
-        countdown.textContent = "LIVE NOW";
-        return;
-    }
+const QUESTIONS = [
+  "How does an emotion take root in your environment?",
+  "How do your emotional experiences connect and spread?",
+  "What happens when an emotional experience begins to decay?"
+];
 
-    const totalSeconds = Math.floor(difference / 1000);
+const $ = id => document.getElementById(id);
 
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
+function phase() {
+  const now = Date.now();
+  const start = new Date(EVENT_START).getTime();
 
-    countdown.textContent =
-        String(days).padStart(2, "0") + ":" +
-        String(hours).padStart(2, "0") + ":" +
-        String(minutes).padStart(2, "0") + ":" +
-        String(seconds).padStart(2, "0");
+  if (now < start) return "upcoming";
+  if (now < EVENT_END) return "open";
+  return "closed";
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-const STREAM_URL = "https://etharzipildmiragagag.taileab42c.ts.net/necrovoltis/";
-
-function loadStream() {
-
-    const holder = document.getElementById("streamHolder");
-    const placeholder = document.getElementById("streamPlaceholder");
-    const status = document.getElementById("stream-status");
-
-    if (!STREAM_URL.trim()) {
-        status.textContent = "STANDBY";
-        return;
-    }
-
-    const iframe = document.createElement("iframe");
-
-    iframe.src = STREAM_URL;
-    iframe.title = "NOETIC LEXICON PROTOTYPE EXPO LIVE";
-    iframe.allow =
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-    iframe.allowFullscreen = true;
-
-    holder.appendChild(iframe);
-
-    placeholder.remove();
-
-    status.textContent = "LIVE";
+function formatDate(date) {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short"
+  }).format(date);
 }
 
-loadStream();
+function updateClock() {
+  const now = Date.now();
+  const start = new Date(EVENT_START).getTime();
+  const currentPhase = phase();
+
+  if (!Number.isFinite(start)) {
+    $("countdown").textContent = "CLOCK ERROR";
+    $("event-status").textContent = "INVALID EVENT START";
+    return;
+  }
+
+  let remaining;
+  let caption;
+  let status;
+
+  if (currentPhase === "upcoming") {
+    remaining = start - now;
+    caption = "TIME UNTIL THE RESEARCH EVENT OPENS";
+    status = "EVENT SCHEDULED";
+  } else if (currentPhase === "open") {
+    remaining = EVENT_END - now;
+    caption = "TIME REMAINING UNTIL THE RESEARCH WINDOW CLOSES";
+    status = "DATA COLLECTION OPEN";
+  } else {
+    remaining = 0;
+    caption = "THE RESEARCH WINDOW HAS CLOSED";
+    status = "COLLECTION LOCKED";
+  }
+
+  const seconds = Math.floor(remaining / 1000);
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+
+  $("countdown").textContent =
+    [hours, minutes, secs]
+      .map(n => String(n).padStart(2, "0"))
+      .join(":");
+
+  $("timer-caption").textContent = caption;
+  $("event-status").textContent = status;
+  $("event-status").classList.toggle("closed", currentPhase === "closed");
+
+  const elapsed = Math.min(
+    EVENT_DURATION,
+    Math.max(0, now - start)
+  );
+
+  $("progress").style.width =
+    (elapsed / EVENT_DURATION * 100) + "%";
+
+  $("event-dates").textContent =
+    "OPENS: " + formatDate(new Date(start)) +
+    " // CLOSES: " + formatDate(new Date(EVENT_END));
+
+  const submitButton = $("submit-button");
+
+  if (currentPhase === "open") {
+    submitButton.classList.remove("disabled");
+    submitButton.setAttribute("href", issueFormURL());
+    $("submit-message").textContent =
+      "DATA COLLECTION OPEN. SUBMISSIONS ARE STORED IN GITHUB.";
+  } else {
+    submitButton.classList.add("disabled");
+    submitButton.removeAttribute("href");
+
+    $("submit-message").textContent =
+      currentPhase === "upcoming"
+        ? "SUBMISSIONS OPEN AT 10:00 PM NEW YORK TIME."
+        : "THE COLLECTION WINDOW IS CLOSED. SUBMISSIONS ARE LOCKED.";
+  }
+}
+
+function issueFormURL() {
+  return (
+    "https://github.com/" +
+    encodeURIComponent(GITHUB_OWNER) + "/" +
+    encodeURIComponent(GITHUB_REPO) +
+    "/issues/new?template=" +
+    encodeURIComponent(ISSUE_TEMPLATE)
+  );
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+function extractAnswers(body, heading) {
+  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const expression = new RegExp(
+    "###\\s*" + escaped + "\\s*([\\s\\S]*?)(?=\\n###\\s|$)",
+    "i"
+  );
+
+  const match = body.match(expression);
+  if (!match) return [];
+
+  return [...match[1].matchAll(/- \[x\] (.+)/gi)]
+    .map(item => item[1].trim());
+}
+
+async function fetchAllIssues() {
+  const allIssues = [];
+  let page = 1;
+
+  while (page <= 10) {
+    const endpoint =
+      `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(GITHUB_REPO)}` +
+      `/issues?state=all&labels=${encodeURIComponent(ISSUE_LABEL)}` +
+      `&per_page=100&page=${page}`;
+
+    const response = await fetch(endpoint, {
+      headers: {
+        "Accept": "application/vnd.github+json"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("GitHub API returned HTTP " + response.status);
+    }
+
+    const data = await response.json();
+
+    const issues = data.filter(issue => !issue.pull_request);
+    allIssues.push(...issues);
+
+    if (data.length < 100) break;
+    page++;
+  }
+
+  return allIssues;
+}
+
+async function revealResults() {
+  const container = $("results");
+
+  if (
+    GITHUB_OWNER === "YOUR_GITHUB_USERNAME" ||
+    GITHUB_REPO === "YOUR_REPOSITORY_NAME"
+  ) {
+    container.innerHTML = `
+      <div class="lock-symbol">[ CONFIG ]</div>
+      <h3 style="color:var(--lime)">GITHUB CONFIGURATION REQUIRED</h3>
+      <p class="small">Set the repository owner and name in the project configuration.</p>`;
+    return;
+  }
+
+  container.classList.remove("locked");
+  container.innerHTML = `
+    <div class="section-label">RESULTS UNSEALED</div>
+    <p class="small">RETRIEVING COLLECTIVE DATA...</p>`;
+
+  try {
+    const issues = await fetchAllIssues();
+
+    const results = QUESTIONS.map(question => {
+      const counts = {};
+
+      issues.forEach(issue => {
+        extractAnswers(issue.body || "", question).forEach(answer => {
+          counts[answer] = (counts[answer] || 0) + 1;
+        });
+      });
+
+      return { question, counts };
+    });
+
+    let html = `
+      <div class="section-label">RESULTS UNSEALED / FINAL DATASET</div>
+      <h3 style="font-family:'Silkscreen';color:var(--lime)">
+        COLLECTIVE FINDINGS
+      </h3>
+      <p class="small">
+        ${issues.length} SUBMISSIONS RETRIEVED.
+        MULTIPLE SELECTIONS ALLOWED.
+        PERCENTAGES ARE CALCULATED AGAINST TOTAL SUBMISSIONS.
+      </p>`;
+
+    results.forEach((result, index) => {
+      const entries = Object.entries(result.counts)
+        .sort((a, b) => b[1] - a[1]);
+
+      html += `
+        <div class="result-question">
+          0${index + 1} // ${escapeHTML(result.question)}
+        </div>`;
+
+      if (!entries.length) {
+        html += `<p class="small">NO RESPONSES RECORDED.</p>`;
+      }
+
+      entries.forEach(([answer, count]) => {
+        const percentage = issues.length
+          ? Math.round(count / issues.length * 100)
+          : 0;
+
+        html += `
+          <div class="result-row">
+            <div class="result-top">
+              <span>${escapeHTML(answer)}</span>
+              <span>${count} / ${issues.length}</span>
+            </div>
+            <div class="result-bar">
+              <span style="width:${Math.min(100, percentage)}%"></span>
+            </div>
+            <div class="small">${percentage}% OF SUBMISSIONS</div>
+          </div>`;
+      });
+    });
+
+    html += `
+      <p class="small">
+        DATA SOURCE: PUBLIC GITHUB ISSUE SUBMISSIONS.
+        RESULTS ARE PERIODICALLY REFRESHED, NOT LIVE.
+      </p>`;
+
+    container.innerHTML = html;
+
+  } catch (error) {
+    container.innerHTML = `
+      <div class="lock-symbol">[ ERROR ]</div>
+      <h3 style="color:var(--lime)">DATA RETRIEVAL FAILED</h3>
+      <p class="small">${escapeHTML(error.message)}</p>
+      <p class="small">The results will be retried automatically.</p>`;
+  }
+}
+
+let resultsRevealed = false;
+
+async function synchronize() {
+  updateClock();
+
+  if (phase() === "closed" && !resultsRevealed) {
+    resultsRevealed = true;
+    await revealResults();
+  }
+}
+
+synchronize();
+setInterval(synchronize, 1000);
+
+/* Refresh aggregated results every five minutes after closing. */
+setInterval(() => {
+  if (phase() === "closed") {
+    revealResults();
+  }
+}, REFRESH_INTERVAL);
 
 </script>
-
 </body>
 </html>
+
