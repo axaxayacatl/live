@@ -3,37 +3,45 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10140b">
-<title>EMOTIONAL MYCOLOGY // NECROVOLTIS LAB DAY III</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10150c">
+<title>EMOTIONAL MYCOLOGY :: NECROVOLTIS LAB DAY III</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap');
-
 :root {
-  --black: #10140b;
-  --panel: #171e10;
-  --panel2: #1e2815;
-  --lime: #b6ff00;
-  --green: #78a900;
-  --muted: #82916c;
-  --pale: #e1edca;
-  --line: #3b5122;
-  --yellow: #d1e85c;
+  --black: #0b0e09;
+  --panel: #11170e;
+  --panel2: #151d11;
+  --lime: #b7ff36;
+  --green: #668b35;
+  --moss: #344a22;
+  --pale: #e0e8d4;
+  --muted: #89947b;
+  --border: #29391d;
+  --red: #ff5360;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
   background:
-    radial-gradient(ellipse at 50% 0%, #253516 0%, transparent 48%),
+    radial-gradient(ellipse at 50% 0%, #1c2912 0%, transparent 48%),
     var(--black);
   color: var(--pale);
-  font-family: 'IBM Plex Mono', monospace;
-  min-height: 100vh;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 body::before {
@@ -41,24 +49,28 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 5;
-  opacity: .09;
+  z-index: 10;
+  opacity: .11;
   background: repeating-linear-gradient(
-    0deg,
+    to bottom,
     transparent 0px,
     transparent 3px,
-    #b6ff00 4px
+    #aaff44 4px
   );
 }
 
-.shell {
-  width: min(940px, calc(100% - 32px));
-  margin: auto;
+a {
+  color: var(--lime);
 }
 
-header {
-  padding: 25px 0 18px;
-  border-bottom: 1px solid var(--line);
+button {
+  font-family: inherit;
+}
+
+.wrapper {
+  width: min(900px, calc(100% - 32px));
+  margin: auto;
+  padding: 35px 0 70px;
 }
 
 .topline {
@@ -66,804 +78,885 @@ header {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  color: var(--muted);
+  color: var(--green);
   font-size: 10px;
   letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 13px;
 }
 
 .hero {
-  position: relative;
-  padding: 65px 0 42px;
-  overflow: hidden;
+  padding: 65px 0 38px;
+  text-align: center;
 }
 
-.hero-art {
-  position: absolute;
-  width: 330px;
-  height: 250px;
-  right: -20px;
-  top: 15px;
-  opacity: .2;
-  pointer-events: none;
-}
-
-.eyebrow {
+.lab-label {
   color: var(--lime);
+  font-family: Silkscreen, monospace;
   font-size: 11px;
-  letter-spacing: 3px;
-  margin-bottom: 18px;
+  letter-spacing: 2px;
 }
 
 h1 {
-  font-family: 'Silkscreen', monospace;
-  font-size: clamp(31px, 7vw, 65px);
-  line-height: 1.25;
-  letter-spacing: -3px;
+  font-family: Silkscreen, monospace;
+  font-size: clamp(25px, 6vw, 49px);
+  line-height: 1.4;
+  letter-spacing: -2px;
   color: var(--lime);
-  margin: 0;
-  text-shadow: 4px 4px 0 #314b13;
-  position: relative;
+  text-shadow: 4px 4px 0 #334d1c;
+  margin: 23px 0 12px;
 }
 
 .subtitle {
-  color: var(--pale);
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto;
   font-size: 12px;
-  line-height: 1.9;
-  max-width: 570px;
-  margin-top: 20px;
 }
 
-.stamp {
-  display: inline-block;
-  border: 1px solid var(--green);
-  color: var(--lime);
-  padding: 7px 10px;
-  font-size: 10px;
-  margin-top: 20px;
-  letter-spacing: 1px;
-  transform: rotate(-1deg);
+.specimen-art {
+  width: min(100%, 430px);
+  margin: 34px auto 0;
+  display: block;
+  opacity: .85;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  background: rgba(17, 23, 14, .94);
+  padding: 23px;
+  margin: 20px 0;
+  box-shadow: 5px 5px 0 #080b07;
 }
 
 .section-label {
   color: var(--lime);
-  font-size: 11px;
-  letter-spacing: 2px;
-  margin: 0 0 14px;
-}
-
-.timer-panel {
-  background: linear-gradient(135deg, #1b2811, #11170c);
-  border: 1px solid var(--green);
-  padding: 25px;
-  margin: 15px 0 35px;
-  position: relative;
-}
-
-.timer-panel::after {
-  content: "EVENT CLOCK";
-  position: absolute;
-  right: 14px;
-  top: -8px;
-  background: var(--black);
-  color: var(--lime);
-  padding: 0 8px;
-  font-size: 9px;
-  letter-spacing: 2px;
-}
-
-.timer {
-  font-family: 'Silkscreen', monospace;
-  font-size: clamp(30px, 8vw, 55px);
-  color: var(--lime);
-  letter-spacing: 2px;
-  margin: 8px 0;
-  text-shadow: 0 0 18px #8bc90040;
-}
-
-.timer-caption {
+  font-family: Silkscreen, monospace;
   font-size: 10px;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.status {
-  display: inline-block;
-  font-size: 10px;
-  color: var(--lime);
-  border: 1px solid var(--green);
-  padding: 5px 8px;
-  margin-top: 10px;
-}
-
-.status.closed {
-  color: var(--yellow);
-  border-color: var(--yellow);
-}
-
-.progress-track {
-  height: 5px;
-  background: #303c22;
-  margin-top: 20px;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--lime);
-  width: 0%;
-  transition: width .5s;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 40px;
-}
-
-.info {
-  border: 1px solid var(--line);
-  background: #141b0e;
-  padding: 14px;
-}
-
-.info strong {
-  display: block;
-  font-family: 'Silkscreen', monospace;
-  font-size: 19px;
-  color: var(--lime);
-  margin-bottom: 7px;
-}
-
-.info span {
-  color: var(--muted);
-  font-size: 9px;
-  line-height: 1.7;
+  letter-spacing: 1px;
+  margin-bottom: 13px;
 }
 
 .intro {
-  color: #bdcba7;
+  color: var(--muted);
   font-size: 12px;
-  line-height: 2;
-  border-left: 2px solid var(--lime);
-  padding: 4px 0 4px 17px;
-  margin: 0 0 35px;
+}
+
+.countdown-panel {
+  text-align: center;
+  border-color: var(--green);
+  background: #131d0d;
+  padding: 27px 15px;
+}
+
+.phase {
+  color: var(--lime);
+  font-family: Silkscreen, monospace;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 3vw, 25px);
+  margin: 15px 0;
+}
+
+.time-unit {
+  min-width: 58px;
+}
+
+.time-number {
+  font-size: clamp(25px, 6vw, 42px);
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-label {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.deadline {
+  font-size: 10px;
+  color: var(--muted);
 }
 
 .question {
-  border: 1px solid var(--line);
+  border: 1px solid var(--border);
   background: var(--panel);
-  padding: 22px;
-  margin: 15px 0;
-  position: relative;
+  padding: 23px;
+  margin: 20px 0;
 }
 
 .question-number {
-  font-family: 'Silkscreen', monospace;
-  color: var(--green);
-  font-size: 11px;
+  color: var(--lime);
+  font-family: Silkscreen, monospace;
+  font-size: 10px;
+  margin-bottom: 13px;
 }
 
 .question h3 {
   font-size: 16px;
-  color: var(--lime);
-  margin: 10px 0;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0 0 7px;
+  color: var(--pale);
 }
 
 .question p {
-  font-size: 11px;
-  line-height: 1.8;
   color: var(--muted);
-  margin-bottom: 18px;
+  font-size: 11px;
+  margin: 0 0 17px;
 }
 
 .options {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
 .option {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 48px;
   border: 1px solid #344324;
   background: #11170d;
   padding: 12px;
   color: var(--pale);
   font-size: 11px;
-  line-height: 1.6;
+  cursor: pointer;
+  transition: .15s;
 }
 
-.option::before {
-  content: "[ ] ";
+.option:hover,
+.option:has(input:checked) {
+  border-color: var(--lime);
+  background: #1c2911;
   color: var(--lime);
-  margin-right: 5px;
 }
 
-.submit-area {
-  border: 1px dashed var(--green);
-  padding: 22px;
-  margin: 22px 0 40px;
+.option input {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  border: 1px solid var(--green);
+  background: transparent;
+  margin: 0;
+  cursor: pointer;
+}
+
+.option input:checked {
+  background: var(--lime);
+  box-shadow: inset 0 0 0 3px #11170d;
+}
+
+.option input:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.selection-count {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 12px;
+}
+
+.submit-panel {
+  text-align: center;
 }
 
 .submit-button {
   display: inline-block;
+  border: 1px solid var(--lime);
   background: var(--lime);
-  color: #10140b;
-  border: 0;
-  padding: 13px 18px;
-  font: 700 11px 'IBM Plex Mono', monospace;
-  letter-spacing: 1px;
-  text-decoration: none;
+  color: #10150c;
+  font-family: Silkscreen, monospace;
+  font-size: 11px;
+  padding: 16px 23px;
   cursor: pointer;
-  margin-top: 15px;
+  text-decoration: none;
+  transition: .15s;
 }
 
 .submit-button:hover {
-  background: var(--pale);
+  background: transparent;
+  color: var(--lime);
 }
 
-.submit-button.disabled {
-  opacity: .35;
-  pointer-events: none;
+.submit-button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
 }
 
-.small {
+.notice {
   color: var(--muted);
   font-size: 10px;
-  line-height: 1.9;
+  max-width: 570px;
+  margin: 15px auto 0;
 }
 
-.results {
-  border: 1px solid var(--green);
-  background: #131a0d;
-  padding: 24px;
-  margin: 35px 0;
+.error {
+  color: var(--red);
+  font-size: 11px;
+  margin-top: 12px;
 }
 
-.results.locked {
-  text-align: center;
-  padding: 45px 20px;
+.results-panel {
+  display: none;
 }
 
-.lock-symbol {
-  font-family: 'Silkscreen', monospace;
-  font-size: 30px;
-  color: var(--green);
-  margin-bottom: 15px;
+.results-panel.visible {
+  display: block;
 }
 
-.result-row { margin: 20px 0; }
+.result-row {
+  margin: 18px 0;
+}
 
-.result-top {
+.result-heading {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
   font-size: 11px;
   margin-bottom: 7px;
 }
 
-.result-bar {
-  height: 9px;
-  background: #303c22;
+.result-track {
+  height: 10px;
+  background: #26331c;
+  overflow: hidden;
 }
 
-.result-bar span {
-  display: block;
+.result-fill {
   height: 100%;
+  width: 0;
   background: var(--lime);
+  transition: width .4s ease;
 }
 
-.result-question {
-  color: var(--lime);
-  font-size: 13px;
-  line-height: 1.7;
-  margin-top: 28px;
-}
-
-footer {
-  border-top: 1px solid var(--line);
-  padding: 25px 0 45px;
+.result-empty {
   color: var(--muted);
-  font-size: 9px;
-  line-height: 2;
-  letter-spacing: 1px;
+  font-size: 11px;
 }
 
-footer strong { color: var(--lime); }
+.footer {
+  margin-top: 55px;
+  border-top: 1px solid var(--border);
+  padding-top: 17px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 10px;
+}
 
-@media(max-width:600px) {
-  .info-grid { grid-template-columns: 1fr; }
-  .hero { padding-top: 45px; }
-  .hero-art { width: 200px; right: -55px; }
-  .question { padding: 16px; }
-  .timer-panel { padding: 20px 15px; }
+.footer strong {
+  color: var(--lime);
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    width: min(100% - 22px, 900px);
+    padding-top: 20px;
+  }
+
+  .hero {
+    padding-top: 45px;
+  }
+
+  .panel,
+  .question {
+    padding: 17px;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .countdown {
+    gap: 12px;
+  }
+
+  .time-unit {
+    min-width: 48px;
+  }
 }
 </style>
 </head>
 
 <body>
-<div class="shell">
+<main class="wrapper">
 
-<header>
   <div class="topline">
-    <span>NECROVOLTIS // RESEARCH DIVISION</span>
-    <span>LAB DAY III // 003</span>
-  </div>
-</header>
-
-<main>
-
-<section class="hero">
-  <svg class="hero-art" viewBox="0 0 330 250"
-       fill="none" aria-hidden="true">
-    <g stroke="#b6ff00" stroke-width="2">
-      <path d="M160 250 L160 150 L100 105 L55 60
-      M160 150 L220 100 L280 45
-      M100 105 L105 55 L85 20
-      M220 100 L220 45 L245 15
-      M160 150 L145 90 L165 35
-      M160 190 L95 175 L35 190
-      M160 190 L230 175 L295 195"/>
-      <path d="M100 105 L60 120 L25 110
-      M220 100 L270 120 L310 105
-      M145 90 L110 70 M230 175 L260 220"/>
-    </g>
-    <g fill="#b6ff00">
-      <rect x="51" y="55" width="8" height="8"/>
-      <rect x="81" y="16" width="8" height="8"/>
-      <rect x="276" y="41" width="8" height="8"/>
-      <rect x="241" y="11" width="8" height="8"/>
-      <rect x="21" y="106" width="8" height="8"/>
-      <rect x="306" y="101" width="8" height="8"/>
-      <rect x="31" y="186" width="8" height="8"/>
-      <rect x="291" y="191" width="8" height="8"/>
-      <rect x="256" y="216" width="8" height="8"/>
-      <rect x="161" y="31" width="8" height="8"/>
-    </g>
-  </svg>
-
-  <div class="eyebrow">[ COLLECTIVE RESEARCH EVENT / 003 ]</div>
-  <h1>EMOTIONAL<br>MYCOLOGY</h1>
-
-  <div class="subtitle">
-    A collective inquiry into emotional growth, memory,
-    interconnected experiences, dormancy, and transformation.
-    Three questions. One shared specimen archive.
+    <span>NECROVOLTIS // MATERIALS RESEARCH</span>
+    <span>LAB DAY III // 2026</span>
   </div>
 
-  <div class="stamp">NECROVOLTIS LAB DAY III</div>
-</section>
+  <header class="hero">
+    <div class="lab-label">NECROVOLTIS LAB DAY III</div>
+    <h1>EMOTIONAL<br>MYCOLOGY</h1>
+    <p class="subtitle">
+      A collective research sheet exploring emotional experiences
+      through the structures and behaviors of fungal systems.
+    </p>
 
-<section class="timer-panel">
-  <div class="section-label">01 // EVENT COUNTDOWN</div>
-  <div class="timer" id="countdown">24:00:00</div>
-  <div class="timer-caption" id="timer-caption">
-    TIME REMAINING UNTIL THE RESEARCH WINDOW CLOSES
-  </div>
-  <div class="status" id="event-status">INITIALIZING EVENT CLOCK</div>
-  <div class="progress-track">
-    <div class="progress-fill" id="progress"></div>
-  </div>
-  <p class="small" id="event-dates"></p>
-</section>
+    <svg class="specimen-art" viewBox="0 0 440 180" role="img" aria-label="Pixel-inspired branching mycelium network">
+      <g fill="none" stroke="#9bdc39" stroke-width="2">
+        <path d="M220 170 V125 L190 100 L190 65 L160 40"/>
+        <path d="M220 125 L250 100 L250 65 L285 35"/>
+        <path d="M190 100 L145 100 L115 75 L75 75"/>
+        <path d="M250 100 L300 100 L330 75 L370 75"/>
+        <path d="M220 145 L185 145 L160 125 L130 125"/>
+        <path d="M220 145 L255 145 L280 125 L310 125"/>
+        <path d="M160 40 L160 20"/>
+        <path d="M285 35 L285 15"/>
+        <path d="M75 75 L55 55"/>
+        <path d="M370 75 L390 55"/>
+        <path d="M115 75 L115 45"/>
+        <path d="M330 75 L330 45"/>
+      </g>
+      <g fill="#b7ff36">
+        <rect x="215" y="165" width="10" height="10"/>
+        <rect x="185" y="60" width="10" height="10"/>
+        <rect x="155" y="35" width="10" height="10"/>
+        <rect x="245" y="60" width="10" height="10"/>
+        <rect x="280" y="30" width="10" height="10"/>
+        <rect x="70" y="70" width="10" height="10"/>
+        <rect x="365" y="70" width="10" height="10"/>
+        <rect x="125" y="120" width="10" height="10"/>
+        <rect x="305" y="120" width="10" height="10"/>
+        <rect x="110" y="40" width="10" height="10"/>
+        <rect x="325" y="40" width="10" height="10"/>
+        <rect x="155" y="15" width="10" height="10"/>
+        <rect x="280" y="10" width="10" height="10"/>
+      </g>
+      <g fill="#668b35">
+        <rect x="205" y="110" width="7" height="7"/>
+        <rect x="235" y="85" width="7" height="7"/>
+        <rect x="140" y="90" width="7" height="7"/>
+        <rect x="295" y="90" width="7" height="7"/>
+        <rect x="175" y="135" width="7" height="7"/>
+        <rect x="265" y="135" width="7" height="7"/>
+      </g>
+    </svg>
+  </header>
 
-<div class="info-grid">
-  <div class="info">
-    <strong>03</strong>
-    <span>RESEARCH QUESTIONS</span>
-  </div>
-  <div class="info">
-    <strong>24H</strong>
-    <span>COLLECTION WINDOW</span>
-  </div>
-  <div class="info">
-    <strong>01</strong>
-    <span>COLLECTIVE DATASET</span>
-  </div>
-</div>
+  <section class="panel">
+    <div class="section-label">RESEARCH PROTOCOL / 001</div>
+    <p class="intro">
+      This is a shared, anonymous-in-intent but publicly submitted
+      questionnaire about how emotional experiences develop, connect,
+      and transform. Fungal growth provides the research analogy:
+      colonization, mycelial networks, and decomposition.
+    </p>
+    <p class="intro">
+      Select every response that applies to your experience.
+      There are no correct answers. The collective dataset will be
+      revealed after the 24-hour collection period ends.
+    </p>
+  </section>
 
-<section>
-  <div class="section-label">02 // RESEARCH ABSTRACT</div>
-  <p class="intro">
-    Emotional experiences are approached as fungal systems:
-    they colonize environments, form networks, compete for
-    resources, remain dormant, and transform the conditions
-    around them. This poll collects different observations
-    of those processes as a shared research dataset.
-  </p>
-</section>
-
-<section id="poll-section">
-  <div class="section-label">03 // SPECIMEN QUESTIONNAIRE</div>
-
-  <div class="question">
-    <div class="question-number">SPECIMEN 001 / COLONIZATION</div>
-    <h3>How does an emotion take root in your environment?</h3>
-    <p>Select every pattern that applies to your experience.</p>
-    <div class="options">
-      <div class="option">Gradually, through repeated exposure</div>
-      <div class="option">Suddenly, after a significant event</div>
-      <div class="option">Through contact with another person</div>
-      <div class="option">By attaching itself to an existing memory</div>
-      <div class="option">Quietly, without being noticed</div>
-      <div class="option">It remains dormant until something activates it</div>
+  <section class="panel countdown-panel">
+    <div class="phase" id="phase">COLLECTION SCHEDULED</div>
+    <div class="countdown" aria-live="polite">
+      <div class="time-unit">
+        <div class="time-number" id="days">00</div>
+        <div class="time-label">DAYS</div>
+      </div>
+      <div class="time-unit">
+        <div class="time-number" id="hours">00</div>
+        <div class="time-label">HOURS</div>
+      </div>
+      <div class="time-unit">
+        <div class="time-number" id="minutes">00</div>
+        <div class="time-label">MINUTES</div>
+      </div>
+      <div class="time-unit">
+        <div class="time-number" id="seconds">00</div>
+        <div class="time-label">SECONDS</div>
+      </div>
     </div>
+    <div class="deadline" id="deadline"></div>
+  </section>
+
+  <div id="pollContent">
+
+    <section class="question">
+      <div class="question-number">SPECIMEN 001 / COLONIZATION</div>
+      <h3>How does an emotion take root in your environment?</h3>
+      <p>Select every pattern that applies to your experience.</p>
+
+      <div class="options" id="q1">
+        <label class="option"><input type="checkbox" value="Gradually, through repeated exposure"> Gradually, through repeated exposure</label>
+        <label class="option"><input type="checkbox" value="Suddenly, after a significant event"> Suddenly, after a significant event</label>
+        <label class="option"><input type="checkbox" value="Through contact with another person"> Through contact with another person</label>
+        <label class="option"><input type="checkbox" value="By attaching itself to an existing memory"> By attaching itself to an existing memory</label>
+        <label class="option"><input type="checkbox" value="Quietly, without being noticed"> Quietly, without being noticed</label>
+        <label class="option"><input type="checkbox" value="It remains dormant until something activates it"> It remains dormant until something activates it</label>
+      </div>
+      <div class="selection-count" id="count1">0 SELECTED</div>
+    </section>
+
+    <section class="question">
+      <div class="question-number">SPECIMEN 002 / MYCELIAL NETWORK</div>
+      <h3>How do your emotional experiences connect and spread?</h3>
+      <p>Select every pattern that applies to your experience.</p>
+
+      <div class="options" id="q2">
+        <label class="option"><input type="checkbox" value="One feeling branches into several others"> One feeling branches into several others</label>
+        <label class="option"><input type="checkbox" value="Different memories become interconnected"> Different memories become interconnected</label>
+        <label class="option"><input type="checkbox" value="Other people's emotions influence my own"> Other people's emotions influence my own</label>
+        <label class="option"><input type="checkbox" value="Some feelings compete for space"> Some feelings compete for space</label>
+        <label class="option"><input type="checkbox" value="Certain experiences remain isolated"> Certain experiences remain isolated</label>
+        <label class="option"><input type="checkbox" value="Connections form and disappear over time"> Connections form and disappear over time</label>
+      </div>
+      <div class="selection-count" id="count2">0 SELECTED</div>
+    </section>
+
+    <section class="question">
+      <div class="question-number">SPECIMEN 003 / DECOMPOSITION</div>
+      <h3>What happens when an emotional experience begins to decay?</h3>
+      <p>Select every pattern that applies to your experience.</p>
+
+      <div class="options" id="q3">
+        <label class="option"><input type="checkbox" value="It becomes a distant memory"> It becomes a distant memory</label>
+        <label class="option"><input type="checkbox" value="It transforms into another feeling"> It transforms into another feeling</label>
+        <label class="option"><input type="checkbox" value="It leaves traces in future experiences"> It leaves traces in future experiences</label>
+        <label class="option"><input type="checkbox" value="It returns under familiar conditions"> It returns under familiar conditions</label>
+        <label class="option"><input type="checkbox" value="It gradually loses its influence"> It gradually loses its influence</label>
+        <label class="option"><input type="checkbox" value="It creates space for something new"> It creates space for something new</label>
+      </div>
+      <div class="selection-count" id="count3">0 SELECTED</div>
+    </section>
+
+    <section class="panel submit-panel">
+      <div class="section-label">SUBMISSION TERMINAL</div>
+      <p class="intro">
+        Your selections are currently held in this browser page.
+        Continue to the GitHub submission form to record your response.
+      </p>
+      <button class="submit-button" id="submitButton" type="button">
+        CONTINUE TO SUBMISSION
+      </button>
+      <div class="error" id="errorMessage" role="alert"></div>
+      <p class="notice">
+        GitHub account required. GitHub Issue submissions are public.
+        This page does not transmit or save your selections automatically.
+      </p>
+    </section>
+
   </div>
 
-  <div class="question">
-    <div class="question-number">SPECIMEN 002 / MYCELIAL NETWORK</div>
-    <h3>How do your emotional experiences connect and spread?</h3>
-    <p>Select every pattern that applies to your experience.</p>
-    <div class="options">
-      <div class="option">One feeling branches into several others</div>
-      <div class="option">Different memories become interconnected</div>
-      <div class="option">Other people's emotions influence my own</div>
-      <div class="option">Some feelings compete for space</div>
-      <div class="option">Certain experiences remain isolated</div>
-      <div class="option">Connections form and disappear over time</div>
+  <section class="panel results-panel" id="resultsPanel">
+    <div class="section-label">COLLECTIVE SPECIMEN REPORT / RESULTS</div>
+    <p class="intro">
+      The collection period has ended. Aggregate responses are now
+      available for examination.
+    </p>
+    <div id="resultsContent">
+      <p class="result-empty">Results connection has not been configured.</p>
     </div>
-  </div>
+    <p class="notice" id="refreshNotice">
+      Results are retrieved from the project's public GitHub submissions.
+    </p>
+  </section>
 
-  <div class="question">
-    <div class="question-number">SPECIMEN 003 / DECOMPOSITION</div>
-    <h3>What happens when an emotional experience begins to decay?</h3>
-    <p>Select every pattern that applies to your experience.</p>
-    <div class="options">
-      <div class="option">It becomes a distant memory</div>
-      <div class="option">It transforms into another feeling</div>
-      <div class="option">It leaves traces in future experiences</div>
-      <div class="option">It returns under familiar conditions</div>
-      <div class="option">It gradually loses its influence</div>
-      <div class="option">It creates space for something new</div>
-    </div>
-  </div>
-
-  <div class="submit-area">
-    <div class="section-label">04 // SUBMIT SPECIMEN DATA</div>
-    <p class="small">
-      Responses are submitted through the project's GitHub Issue
-      Form. Select multiple answers in each question. GitHub
-      sign-in is required. Submissions are publicly visible.
-    </p>
-    <a class="submit-button" id="submit-button"
-       href="#" target="_blank" rel="noopener">
-      OPEN RESEARCH SUBMISSION FORM →
-    </a>
-    <p class="small" id="submit-message">
-      DATA COLLECTION OPENS AT 10:00 PM NEW YORK TIME.
-    </p>
-  </div>
-</section>
-
-<section id="results-section">
-  <div class="section-label">05 // COLLECTIVE FINDINGS</div>
-  <div class="results locked" id="results">
-    <div class="lock-symbol">[ LOCKED ]</div>
-    <h3 style="color:var(--lime);font-family:'Silkscreen';font-size:15px">
-      RESULTS SEALED
-    </h3>
-    <p class="small">
-      Collective findings remain concealed during data collection.
-      The complete results will be revealed when the 24-hour
-      research window closes.
-    </p>
-    <p class="small" id="results-countdown">
-      RESULTS RELEASE: NOVEMBER 20, 2026 / 10:00 PM NEW YORK TIME
-    </p>
-  </div>
-</section>
+  <footer class="footer">
+    <span><strong>NECROVOLTIS</strong> / MATERIALS RESEARCH</span>
+    <span>EMOTIONAL MYCOLOGY // LAB DAY III</span>
+  </footer>
 
 </main>
 
-<footer>
-  <strong>NECROVOLTIS // EMOTIONAL MYCOLOGY</strong><br>
-  LAB DAY III / COLLECTIVE RESEARCH ARCHIVE<br>
-  GITHUB PAGES // GITHUB ISSUE DATA STORAGE<br>
-  RESULTS ARE PERIODICALLY REFRESHED, NOT LIVE.
-</footer>
-
-</div>
-
 <script>
-/* =====================================================
-   GITHUB PROJECT CONFIGURATION
-   Replace these two values with your repository details.
-   ===================================================== */
+/*
+  GITHUB CONFIGURATION
 
+  Replace these values with your GitHub username and repository name.
+  The repository must contain the matching Issue Form before submissions
+  can be recorded.
+*/
 const GITHUB_OWNER = "YOUR_GITHUB_USERNAME";
 const GITHUB_REPO = "YOUR_REPOSITORY_NAME";
 
 const ISSUE_TEMPLATE = "emotional-mycology.yml";
 const ISSUE_LABEL = "emotional-mycology-vote";
 
-/* New York event schedule: November 19, 2026 at 10 PM. */
+/*
+  FIXED EVENT SCHEDULE
+
+  Starts November 19, 2026 at 10:00 PM New York time.
+  Ends exactly 24 hours later.
+*/
 const EVENT_START = "2026-11-19T22:00:00-05:00";
 const EVENT_DURATION = 24 * 60 * 60 * 1000;
-const EVENT_END = new Date(EVENT_START).getTime() + EVENT_DURATION;
 
-const REFRESH_INTERVAL = 5 * 60 * 1000;
+const START_TIME = new Date(EVENT_START).getTime();
+const END_TIME = START_TIME + EVENT_DURATION;
 
-const QUESTIONS = [
-  "How does an emotion take root in your environment?",
-  "How do your emotional experiences connect and spread?",
-  "What happens when an emotional experience begins to decay?"
-];
+const phaseElement = document.getElementById("phase");
+const pollContent = document.getElementById("pollContent");
+const resultsPanel = document.getElementById("resultsPanel");
+const submitButton = document.getElementById("submitButton");
+const errorMessage = document.getElementById("errorMessage");
 
-const $ = id => document.getElementById(id);
+document.getElementById("deadline").textContent =
+  "COLLECTION CLOSES: " +
+  new Date(END_TIME).toLocaleString("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "America/New_York"
+  }) +
+  " NEW YORK TIME";
 
-function phase() {
-  const now = Date.now();
-  const start = new Date(EVENT_START).getTime();
+/* Update the selection counters. */
+function updateSelectionCounts() {
+  [1, 2, 3].forEach(number => {
+    const container = document.getElementById("q" + number);
+    const count = container.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    ).length;
 
-  if (now < start) return "upcoming";
-  if (now < EVENT_END) return "open";
-  return "closed";
+    document.getElementById("count" + number).textContent =
+      count + " SELECTED";
+  });
 }
 
-function formatDate(date) {
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/New_York",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short"
-  }).format(date);
-}
+document.querySelectorAll('.option input[type="checkbox"]').forEach(input => {
+  input.addEventListener("change", updateSelectionCounts);
+});
 
-function updateClock() {
+/* Fixed countdown and event locking. */
+function updateCountdown() {
   const now = Date.now();
-  const start = new Date(EVENT_START).getTime();
-  const currentPhase = phase();
 
-  if (!Number.isFinite(start)) {
-    $("countdown").textContent = "CLOCK ERROR";
-    $("event-status").textContent = "INVALID EVENT START";
+  if (now < START_TIME) {
+    phaseElement.textContent = "COLLECTION SCHEDULED";
+    pollContent.style.display = "block";
+    submitButton.disabled = true;
+
+    const remaining = START_TIME - now;
+    displayTime(remaining);
     return;
   }
 
-  let remaining;
-  let caption;
-  let status;
+  if (now < END_TIME) {
+    phaseElement.textContent = "COLLECTION OPEN";
+    pollContent.style.display = "block";
+    submitButton.disabled = false;
 
-  if (currentPhase === "upcoming") {
-    remaining = start - now;
-    caption = "TIME UNTIL THE RESEARCH EVENT OPENS";
-    status = "EVENT SCHEDULED";
-  } else if (currentPhase === "open") {
-    remaining = EVENT_END - now;
-    caption = "TIME REMAINING UNTIL THE RESEARCH WINDOW CLOSES";
-    status = "DATA COLLECTION OPEN";
-  } else {
-    remaining = 0;
-    caption = "THE RESEARCH WINDOW HAS CLOSED";
-    status = "COLLECTION LOCKED";
+    const remaining = END_TIME - now;
+    displayTime(remaining);
+    return;
   }
 
-  const seconds = Math.floor(remaining / 1000);
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
+  phaseElement.textContent = "COLLECTION CLOSED // RESULTS UNLOCKED";
+  pollContent.style.display = "none";
+  submitButton.disabled = true;
 
-  $("countdown").textContent =
-    [hours, minutes, secs]
-      .map(n => String(n).padStart(2, "0"))
-      .join(":");
+  displayTime(0);
+  resultsPanel.classList.add("visible");
 
-  $("timer-caption").textContent = caption;
-  $("event-status").textContent = status;
-  $("event-status").classList.toggle("closed", currentPhase === "closed");
-
-  const elapsed = Math.min(
-    EVENT_DURATION,
-    Math.max(0, now - start)
-  );
-
-  $("progress").style.width =
-    (elapsed / EVENT_DURATION * 100) + "%";
-
-  $("event-dates").textContent =
-    "OPENS: " + formatDate(new Date(start)) +
-    " // CLOSES: " + formatDate(new Date(EVENT_END));
-
-  const submitButton = $("submit-button");
-
-  if (currentPhase === "open") {
-    submitButton.classList.remove("disabled");
-    submitButton.setAttribute("href", issueFormURL());
-    $("submit-message").textContent =
-      "DATA COLLECTION OPEN. SUBMISSIONS ARE STORED IN GITHUB.";
-  } else {
-    submitButton.classList.add("disabled");
-    submitButton.removeAttribute("href");
-
-    $("submit-message").textContent =
-      currentPhase === "upcoming"
-        ? "SUBMISSIONS OPEN AT 10:00 PM NEW YORK TIME."
-        : "THE COLLECTION WINDOW IS CLOSED. SUBMISSIONS ARE LOCKED.";
-  }
+  loadResults();
 }
 
-function issueFormURL() {
-  return (
-    "https://github.com/" +
-    encodeURIComponent(GITHUB_OWNER) + "/" +
-    encodeURIComponent(GITHUB_REPO) +
-    "/issues/new?template=" +
-    encodeURIComponent(ISSUE_TEMPLATE)
-  );
+function displayTime(milliseconds) {
+  const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
+
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
 }
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  })[char]);
+/* Collect checked answers for the current browser session. */
+function getSelections() {
+  const result = {};
+
+  [1, 2, 3].forEach(number => {
+    const container = document.getElementById("q" + number);
+
+    result[number] = Array.from(
+      container.querySelectorAll('input[type="checkbox"]:checked')
+    ).map(input => input.value);
+  });
+
+  return result;
 }
 
-function extractAnswers(body, heading) {
-  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const expression = new RegExp(
-    "###\\s*" + escaped + "\\s*([\\s\\S]*?)(?=\\n###\\s|$)",
-    "i"
-  );
+/*
+  Current submission behavior:
+  Opens the GitHub Issue Form.
 
-  const match = body.match(expression);
-  if (!match) return [];
+  GitHub Issue Forms do not automatically receive these browser checkbox
+  values through this implementation. Participants must select the same
+  answers again in the GitHub form.
+*/
+submitButton.addEventListener("click", () => {
+  errorMessage.textContent = "";
 
-  return [...match[1].matchAll(/- \[x\] (.+)/gi)]
-    .map(item => item[1].trim());
-}
-
-async function fetchAllIssues() {
-  const allIssues = [];
-  let page = 1;
-
-  while (page <= 10) {
-    const endpoint =
-      `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(GITHUB_REPO)}` +
-      `/issues?state=all&labels=${encodeURIComponent(ISSUE_LABEL)}` +
-      `&per_page=100&page=${page}`;
-
-    const response = await fetch(endpoint, {
-      headers: {
-        "Accept": "application/vnd.github+json"
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error("GitHub API returned HTTP " + response.status);
-    }
-
-    const data = await response.json();
-
-    const issues = data.filter(issue => !issue.pull_request);
-    allIssues.push(...issues);
-
-    if (data.length < 100) break;
-    page++;
+  if (Date.now() < START_TIME || Date.now() >= END_TIME) {
+    errorMessage.textContent = "THE COLLECTION IS NOT CURRENTLY OPEN.";
+    updateCountdown();
+    return;
   }
 
-  return allIssues;
-}
+  const selections = getSelections();
 
-async function revealResults() {
-  const container = $("results");
+  if (
+    selections[1].length === 0 ||
+    selections[2].length === 0 ||
+    selections[3].length === 0
+  ) {
+    errorMessage.textContent =
+      "SELECT AT LEAST ONE RESPONSE IN EACH SPECIMEN.";
+    return;
+  }
 
   if (
     GITHUB_OWNER === "YOUR_GITHUB_USERNAME" ||
     GITHUB_REPO === "YOUR_REPOSITORY_NAME"
   ) {
-    container.innerHTML = `
-      <div class="lock-symbol">[ CONFIG ]</div>
-      <h3 style="color:var(--lime)">GITHUB CONFIGURATION REQUIRED</h3>
-      <p class="small">Set the repository owner and name in the project configuration.</p>`;
+    errorMessage.textContent =
+      "CONFIGURE YOUR GITHUB OWNER AND REPOSITORY IN THE SCRIPT FIRST.";
     return;
   }
 
-  container.classList.remove("locked");
-  container.innerHTML = `
-    <div class="section-label">RESULTS UNSEALED</div>
-    <p class="small">RETRIEVING COLLECTIVE DATA...</p>`;
+  const url =
+    "https://github.com/" +
+    encodeURIComponent(GITHUB_OWNER) +
+    "/" +
+    encodeURIComponent(GITHUB_REPO) +
+    "/issues/new?template=" +
+    encodeURIComponent(ISSUE_TEMPLATE);
+
+  window.open(url, "_blank", "noopener,noreferrer");
+});
+
+/* Results parser for GitHub Issue Form submissions. */
+const QUESTIONS = [
+  {
+    heading: "COLONIZATION",
+    answers: [
+      "Gradually, through repeated exposure",
+      "Suddenly, after a significant event",
+      "Through contact with another person",
+      "By attaching itself to an existing memory",
+      "Quietly, without being noticed",
+      "It remains dormant until something activates it"
+    ]
+  },
+  {
+    heading: "MYCELIAL NETWORK",
+    answers: [
+      "One feeling branches into several others",
+      "Different memories become interconnected",
+      "Other people's emotions influence my own",
+      "Some feelings compete for space",
+      "Certain experiences remain isolated",
+      "Connections form and disappear over time"
+    ]
+  },
+  {
+    heading: "DECOMPOSITION",
+    answers: [
+      "It becomes a distant memory",
+      "It transforms into another feeling",
+      "It leaves traces in future experiences",
+      "It returns under familiar conditions",
+      "It gradually loses its influence",
+      "It creates space for something new"
+    ]
+  }
+];
+
+function extractAnswers(body, heading) {
+  const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  const sectionPattern = new RegExp(
+    "###\\s*" + escapedHeading + "\\s*\\n([\\s\\S]*?)(?=\\n###\\s|$)",
+    "i"
+  );
+
+  const match = body.match(sectionPattern);
+
+  if (!match) return [];
+
+  return match[1]
+    .split("\n")
+    .filter(line => /^\s*-\s*\[x\]/i.test(line))
+    .map(line => line.replace(/^\s*-\s*\[x\]\s*/i, "").trim());
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[character]);
+}
+
+async function loadResults() {
+  const resultsContent = document.getElementById("resultsContent");
+
+  if (
+    GITHUB_OWNER === "YOUR_GITHUB_USERNAME" ||
+    GITHUB_REPO === "YOUR_REPOSITORY_NAME"
+  ) {
+    resultsContent.innerHTML =
+      '<p class="result-empty">Configure the GitHub repository settings to load results.</p>';
+    return;
+  }
+
+  resultsContent.innerHTML =
+    '<p class="result-empty">ACCESSING COLLECTIVE SPECIMEN RECORDS...</p>';
 
   try {
-    const issues = await fetchAllIssues();
+    let issues = [];
+    let page = 1;
 
-    const results = QUESTIONS.map(question => {
-      const counts = {};
+    while (page <= 10) {
+      const url =
+        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues` +
+        `?state=all&labels=${encodeURIComponent(ISSUE_LABEL)}` +
+        `&per_page=100&page=${page}`;
 
-      issues.forEach(issue => {
-        extractAnswers(issue.body || "", question).forEach(answer => {
-          counts[answer] = (counts[answer] || 0) + 1;
-        });
-      });
+      const response = await fetch(url);
 
-      return { question, counts };
-    });
-
-    let html = `
-      <div class="section-label">RESULTS UNSEALED / FINAL DATASET</div>
-      <h3 style="font-family:'Silkscreen';color:var(--lime)">
-        COLLECTIVE FINDINGS
-      </h3>
-      <p class="small">
-        ${issues.length} SUBMISSIONS RETRIEVED.
-        MULTIPLE SELECTIONS ALLOWED.
-        PERCENTAGES ARE CALCULATED AGAINST TOTAL SUBMISSIONS.
-      </p>`;
-
-    results.forEach((result, index) => {
-      const entries = Object.entries(result.counts)
-        .sort((a, b) => b[1] - a[1]);
-
-      html += `
-        <div class="result-question">
-          0${index + 1} // ${escapeHTML(result.question)}
-        </div>`;
-
-      if (!entries.length) {
-        html += `<p class="small">NO RESPONSES RECORDED.</p>`;
+      if (!response.ok) {
+        throw new Error("GitHub API returned " + response.status);
       }
 
-      entries.forEach(([answer, count]) => {
-        const percentage = issues.length
-          ? Math.round(count / issues.length * 100)
-          : 0;
+      const batch = await response.json();
 
-        html += `
-          <div class="result-row">
-            <div class="result-top">
-              <span>${escapeHTML(answer)}</span>
-              <span>${count} / ${issues.length}</span>
-            </div>
-            <div class="result-bar">
-              <span style="width:${Math.min(100, percentage)}%"></span>
-            </div>
-            <div class="small">${percentage}% OF SUBMISSIONS</div>
-          </div>`;
-      });
-    });
+      issues = issues.concat(
+        batch.filter(issue => !issue.pull_request)
+      );
 
-    html += `
-      <p class="small">
-        DATA SOURCE: PUBLIC GITHUB ISSUE SUBMISSIONS.
-        RESULTS ARE PERIODICALLY REFRESHED, NOT LIVE.
-      </p>`;
+      if (batch.length < 100) break;
 
-    container.innerHTML = html;
+      page++;
+    }
+
+    renderResults(issues);
 
   } catch (error) {
-    container.innerHTML = `
-      <div class="lock-symbol">[ ERROR ]</div>
-      <h3 style="color:var(--lime)">DATA RETRIEVAL FAILED</h3>
-      <p class="small">${escapeHTML(error.message)}</p>
-      <p class="small">The results will be retried automatically.</p>`;
+    resultsContent.innerHTML =
+      '<p class="result-empty">RESULTS CONNECTION FAILED. CHECK REPOSITORY SETTINGS AND PUBLIC ACCESS.</p>';
+
+    console.error(error);
   }
 }
 
-let resultsRevealed = false;
+function renderResults(issues) {
+  const resultsContent = document.getElementById("resultsContent");
 
-async function synchronize() {
-  updateClock();
+  let totalSubmissions = 0;
 
-  if (phase() === "closed" && !resultsRevealed) {
-    resultsRevealed = true;
-    await revealResults();
+  const counts = QUESTIONS.map(question =>
+    question.answers.map(answer => ({
+      answer,
+      count: 0
+    }))
+  );
+
+  issues.forEach(issue => {
+    const body = issue.body || "";
+
+    QUESTIONS.forEach((question, questionIndex) => {
+      const selected = extractAnswers(body, question.heading);
+
+      if (questionIndex === 0 && selected.length > 0) {
+        totalSubmissions++;
+      }
+
+      selected.forEach(answer => {
+        const entry = counts[questionIndex].find(
+          item => item.answer === answer
+        );
+
+        if (entry) entry.count++;
+      });
+    });
+  });
+
+  let html =
+    `<p class="intro">TOTAL SUBMISSIONS: <strong>${totalSubmissions}</strong></p>`;
+
+  QUESTIONS.forEach((question, questionIndex) => {
+    html += `<div class="result-row"><div class="section-label">${escapeHTML(question.heading)}</div>`;
+
+    counts[questionIndex].forEach(item => {
+      const percentage = totalSubmissions > 0
+        ? Math.round(item.count / totalSubmissions * 100)
+        : 0;
+
+      html += `
+        <div class="result-row">
+          <div class="result-heading">
+            <span>${escapeHTML(item.answer)}</span>
+            <span>${item.count}</span>
+          </div>
+          <div class="result-track">
+            <div class="result-fill" style="width:${percentage}%"></div>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+  });
+
+  if (totalSubmissions === 0) {
+    html =
+      '<p class="result-empty">NO VALID SUBMISSIONS FOUND YET.</p>';
   }
+
+  resultsContent.innerHTML = html;
+
+  document.getElementById("refreshNotice").textContent =
+    "LAST UPDATED: " + new Date().toLocaleTimeString() +
+    " // AUTOMATIC REFRESH EVERY 5 MINUTES";
 }
 
-synchronize();
-setInterval(synchronize, 1000);
+/* Initialize. */
+updateSelectionCounts();
+updateCountdown();
 
-/* Refresh aggregated results every five minutes after closing. */
+setInterval(updateCountdown, 1000);
+
+/* Results refresh only after the event deadline. */
 setInterval(() => {
-  if (phase() === "closed") {
-    revealResults();
+  if (Date.now() >= END_TIME) {
+    loadResults();
   }
-}, REFRESH_INTERVAL);
-
+}, 5 * 60 * 1000);
 </script>
+
 </body>
 </html>
+
 
